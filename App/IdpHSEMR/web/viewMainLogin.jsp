@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="css/foundation.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Hospital Ward Management System for NP Health Sciences</title>
+        
     </head>
     <body>
         <div class="row" style="padding-top: 30px;">
@@ -25,7 +26,9 @@
 
                         String msg = request.getParameter("errorMsg");
                         if (msg != null) {
-                            out.println(msg);
+                            %>
+                            <font color="red"><%=msg%></font>
+                            <%
                         }
                         if (request.getAttribute("errorMsg") != null) {
                             out.println(request.getAttribute("errorMsg"));
@@ -48,7 +51,7 @@
                                     <label for="password">Password: </label>
                                 </td>
                                 <td>
-                                    <input type ="text" id="password" name="password">
+                                    <input type ="password" id="password" name="password">
                                 </td>
                             </tr>
                         </table>

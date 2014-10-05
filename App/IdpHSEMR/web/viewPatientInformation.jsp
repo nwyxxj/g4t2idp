@@ -6,15 +6,22 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@include file="protect.jsp"%>
+
 <html>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/vendor/jquery.js"></script>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Patient Information</title>
         <link rel="stylesheet" href="css/foundation.css" />
-        <%@include file="topbar.jsp" %> 
+        <title>Patient Information</title>
+        <%@include file="topbar.jsp"%>
     </head>
+        
     <body>
+        <script src="js/foundation.min.js"></script>
         <br>
+        
         <div align ="center">
 
             <div class="large-centered large-10 columns">
@@ -31,40 +38,36 @@
             <div class="large-centered large-10 columns">
                 <div class="tabs-content">
                     <dl class="tabs" data-tab>
-                        <dd class="active"><a href="#panel1">Admission Notes</a></dd>
-                        <dd><a href="#panel2">Reports</a></dd>
-                        <dd><a href="#panel3">Vital Signs</a></dd>
-                        <dd><a href="#panel4">Medication</a></dd>
-                        <dd><a href="#panel5">Multidisciplinary Notes</a></dd>
+                        <dd class="active"><a href="#admission">Admission Notes</a></dd>
+                        <dd><a href="#reports">Reports</a></dd>
+                        <dd><a href="#vital">Vital Signs</a></dd>
+                        <dd><a href="#medication">Medication</a></dd>
+                        <dd><a href="#multidisciplinary">Multidisciplinary Notes</a></dd>
                     </dl>
 
-                    <div class="content active" id="panel1">
+                    <div class="content active" id="admission">
                         <p>Content to go here</p>
                     </div>
-                    <div class="content" id="panel2">
-                        <p>Content to go here</p>
-                    </div>
-
-                    <div class="content" id="panel3">
+                    <div class="content" id="reports">
                         <p>Content to go here</p>
                     </div>
 
-                    <div class="content" id="panel4">
+                    <div class="content" id="vital">
                         <p>Content to go here</p>
                     </div>
 
-                    <div class="content" id="panel5">
+                    <div class="content" id="medication">
+                        <p>Content to go here</p>
+                    </div>
+
+                    <div class="content" id="multidisciplinary">
                         <p>Content to go here</p>
                     </div>
                 </div>
-
             </div>
         </div>
-
-        <script src="js/vendor/jquery.js"></script>
-        <script src="js/foundation.min.js"></script>
+    </body>
         <script>
             $(document).foundation();
         </script>
-    </body>
 </html>

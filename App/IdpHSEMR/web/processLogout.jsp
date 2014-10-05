@@ -14,7 +14,7 @@
     <body>
          <%
             session.invalidate();
-            response.sendRedirect("logIn.jsp");
+            response.sendRedirect("viewMainLogin.jsp");
         %>
     </body>
 </html>

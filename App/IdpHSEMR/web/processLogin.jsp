@@ -19,7 +19,7 @@
 
             if (userid.equals("nurse1") && password.equals("nurse1")) {
                 session.setAttribute("login", userid);
-                response.sendRedirect("viewPatientInformation.jsp");
+                response.sendRedirect("viewAllWardInformation.jsp");
             } else {
 
         %>
