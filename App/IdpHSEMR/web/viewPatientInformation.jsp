@@ -11,6 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Patient Information</title>
         <link rel="stylesheet" href="css/foundation.css" />
+        <%@include file="topbar.jsp" %> 
     </head>
     <body>
         <br>
