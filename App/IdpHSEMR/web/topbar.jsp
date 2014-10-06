@@ -34,7 +34,7 @@
                                           <b>Scenario Description: </b>This simulated clinical experience was designed to expose the learner to the patient who experiences an adverse reaction to blood transfusion. The patient is first day postoperative gynecological surgery who develops the complication of hypovolemia that requires a blood transfusion. The simulated clinical experience will automatically progress to anaphylaxis and subsequent shock states without prompt recognition of the transfusion reaction. With prompt recognition and intervention, the patient stabilises. The anaphylactic component of this simulated clinical experience may be used separately depending on learning objectives and may be overlaid on any patient or other scenario. This simulated clinical experience is intended for the learner in Semester VI.
                                           ">Case Information</span></a></li>
                     <li><a href="viewAllWardInformation.jsp">Inpatient Overview</a></li>
-                    <li><a href="#">Submission</a></li>
+<!--                    <li><a href="#">Submission</a></li>-->
                   </ul>
                 
                 <ul class="right"> 
