@@ -46,10 +46,10 @@
                     <span class="label">Allergy</span> Bactrim&nbsp;
                     </p>
                 </div></div>
-<!-- Error Message -->
+            <!-- Error Message -->
             <div class="large-centered large-10 columns">
                 <%String updated = (String) session.getAttribute("updated");
-                    
+
                     if (updated != null && !updated.equals("")) {
                 %>
                 <div data-alert class="alert-box success radius">
@@ -57,72 +57,130 @@
                     <a href="#" class="close">&times;</a>
                 </div>
                 <%
-                        } else {
-                            out.println("");
-                        }
-                    
+                    } else {
+                        out.println("");
+                    }
+
                     //check for success message                   
-                    String[] notesList = (String[])session.getAttribute("notesList");
-                    String[] submittedNotes = (String[])session.getAttribute("submittedNotes");
-                    if (submittedNotes != null) { 
+                    String[] notesList = (String[]) session.getAttribute("notesList");
+                    String[] submittedNotes = (String[]) session.getAttribute("submittedNotes");
+                    if (submittedNotes != null) {
                 %>
                 <div data-alert class="alert-box success radius">
                     Notes successfully added.
                     <a href="#" class="close">&times;</a>
                 </div>
                 <%
-
                     }%>
-                    
-                     <%                                
+
+                <%
                     String successMsg = (String) request.getAttribute("successMsg");
-                            if (successMsg != null) {
-                                %>
-                         <div data-alert class="alert-box success radius">
+                    if (successMsg != null) {
+                %>
+                <div data-alert class="alert-box success radius">
                     Patient administered successfully
                     <a href="#" class="close">&times;</a>
                 </div>
-                        <%
-                            }
-                            
-                           String errorMsg = "";
-                           errorMsg = (String) request.getAttribute("errorMsg");
-                            if (errorMsg != null) {
-                                %>
-                                <div data-alert class="alert-box alert radius"> 
-                                Please scan the correct bar codes 
-                                </div>
-                                <%
-                               
-                            } 
-                        %>
-                    
-                    <!-- Error Message end-->
+                <%
+                    }
+
+                    String errorMsg = "";
+                    errorMsg = (String) request.getAttribute("errorMsg");
+                    if (errorMsg != null) {
+                %>
+                <div data-alert class="alert-box alert radius"> 
+                    Please scan the correct bar codes 
+                </div>
+                <%
+                    }
+                %>
+
+                <%
+                    String tempError = (String) request.getAttribute("tempError");
+                    String rrError = (String) request.getAttribute("rrError");
+                    String hrError = (String) request.getAttribute("hrError");
+                    String bpError = (String) request.getAttribute("bpError");
+                    String first_time = (String)request.getAttribute("first");
+
+                    if (tempError != null) {
+                %>
+                <div data-alert class="alert-box alert radius"> 
+                    Temperature- Please enter a valid Temp. e.g) 0.00-100.00ºC
+                </div>
+                <%
+                    } else if (rrError != null){
+                     %>
+                <div data-alert class="alert-box alert radius"> 
+                    Respiratory Rate- Please enter a valid RR
+                </div>
+                <%
+                    }else if (hrError != null){
+                     %>
+                <div data-alert class="alert-box alert radius"> 
+                    Heart Rate- Please enter a valid HR
+                </div>
+                <%
+                    }else if (bpError != null){
+                     %>
+                <div data-alert class="alert-box alert radius"> 
+                   Blood Pressure- Please enter a valid BP
+                </div>
+                <%
+                    }else if (first_time != null){
+                     %>
+             
+                    <div data-alert class="alert-box success radius">You have updated successfully!</div>
+                
+                <%
+                    }
+                %>
+
+                <!-- Error Message end-->
 
                 <div class="tabs-content">
                     <dl class="tabs" data-tab>
-                        <dd class="<% if (active== null || active.equals ("") || active.equals("admission")) {out.println("active");}else {out.println("");} %>" ><a href="#admission">Admission Notes</a></dd>
-                        <dd class="<% if (active!= null && active.equals ("reports")) {out.println("active");}else {out.println(""); } %>"><a href="#reports">Reports</a></dd>
-                        <dd class="<% if (active!= null && active.equals ("vital")) {out.println("active");}else {out.println("");} %>"><a href="#vital">Vital Signs</a></dd>
-                        <dd class="<% if (active!= null && active.equals ("medication")) {out.println("active");}else {out.println("");} %>"><a href="#medication">Medication</a></dd>
-                        <dd class="<% if (active!= null && active.equals ("multidisciplinary")) {out.println("active"); }else { out.println(""); } %>"><a href="#multidisciplinary">Multidisciplinary Notes</a></dd>
+                        <dd class="<% if (active == null || active.equals("") || active.equals("admission")) {
+                                out.println("active");
+                            } else {
+                                out.println("");
+                            } %>" ><a href="#admission">Admission Notes</a></dd>
+                        <dd class="<% if (active != null && active.equals("reports")) {
+                                out.println("active");
+                            } else {
+                                out.println("");
+                            } %>"><a href="#reports">Reports</a></dd>
+                        <dd class="<% if (active != null && active.equals("vital")) {
+                                out.println("active");
+                            } else {
+                                out.println("");
+                            } %>"><a href="#vital">Vital Signs</a></dd>
+                        <dd class="<% if (active != null && active.equals("medication")) {
+                                out.println("active");
+                            } else {
+                                out.println("");
+                            } %>"><a href="#medication">Medication</a></dd>
+                        <dd class="<% if (active != null && active.equals("multidisciplinary")) {
+                                out.println("active");
+                            } else {
+                                out.println("");
+                            } %>"><a href="#multidisciplinary">Multidisciplinary Notes</a></dd>
                     </dl>
 
-                    <div class="<% if (active == null || active.equals ( "") || active.equals("admission")) {
+                    <div class="<% if (active == null || active.equals("") || active.equals("admission")) {
                             out.println("content active");
-                        }else {
+                        } else {
                             out.println("content");
                         } %>" id="admission">
-                       
-                            <p style="margin-left:1em; margin-right:1em; text-align:justify;">A recently divorced, 36 year-old female, was admitted to the hospital for abdominal hysterectomy with bilateral due to large uterine fibroids. 
-                                Over the years, she had increasing pain. She was advised to seek surgical intervention, she elected to wait due to personal issues. 
-                                During the period of postponing, she required two outpatient blood transfusion. 
-                                Her lab values included haemoglobin of 8.4ml and haematocrit of 32%. 
-                                Night nurse reports that patient slept in earlier part of shift, but awake and complain of discomfort since 0430 hours.</p>
+
+                        <p style="margin-left:1em; margin-right:1em; text-align:justify;">A recently divorced, 36 year-old female, was admitted to the hospital for abdominal hysterectomy with bilateral due to large uterine fibroids. 
+                            Over the years, she had increasing pain. She was advised to seek surgical intervention, she elected to wait due to personal issues. 
+                            During the period of postponing, she required two outpatient blood transfusion. 
+                            Her lab values included haemoglobin of 8.4ml and haematocrit of 32%. 
+                            Night nurse reports that patient slept in earlier part of shift, but awake and complain of discomfort since 0430 hours.</p>
                     </div>
-                    <div class="<% if (active!= null && active.equals ("reports")) {
+                    <div class="<% if (active != null && active.equals("reports")) {
                             out.println("content active");
-                        }else {
+                        } else {
                             out.println("content");
                         } %>" id="reports">
 
@@ -145,9 +203,8 @@
                                     HashMap<String, Date> reportsRetrieved = (HashMap<String, Date>) session.getAttribute("reports");
 
                                     if (reportsRetrieved
-
-                                    != null && reportsRetrieved.size () 
-                                        > 0) {
+                                            != null && reportsRetrieved.size()
+                                            > 0) {
                                 %>
 
                                 <h1>Existing Report</h1>
@@ -172,8 +229,8 @@
                                             }
 
                                         }
-                                    session.removeAttribute ("updated");
-                                 session.removeAttribute ("active");
+                                        session.removeAttribute("updated");
+                                        session.removeAttribute("active");
                                         // else {
                                         //      out.println("No existing reports yet.");
                                         //    }
@@ -184,25 +241,31 @@
                         </div>
                     </div>
 
-                    <div class="<% if (active!= null && active.equals ("vital")) { out.println("content active");
-                        }else {
+                    <div class="<% if (active != null && active.equals("vital")) {
+                            out.println("content active");
+                        } else {
                             out.println("content");
                         } %>" id="vital">
-                        
-                       
+
+ <form action="processVitalSign.jsp">
                         <table border = "0">   
                             <tr><td></td>
-                                <% Date dateTime=null; 
-                                   dateTime= (Date) request.getAttribute("dateTime");
-                                   
-                                %>
-                                <td style="width:270px;"><b>Last Updated :<br><% if(dateTime== null ){ out.println("Tue Oct 07 13:04:38 SGT 2014");} else{ out.println(dateTime); }%> </b></td> 
-                                
-                                <td><b>Current</b></td>
-                            </tr>
-                            <form action="processVitalSign.jsp">
+                                <% Date dateTime = null;
+                                    dateTime = (Date) request.getAttribute("dateTime");
 
-                                <%                                    
+                                %>
+                                <td style="width:270px;"><b>Last Updated :<br><% if (dateTime == null) {
+                                        out.println("Tue Oct 07 13:04:38 SGT 2014");
+                                    } else {
+                                        out.println(dateTime);
+                                    }%> </b></td> 
+
+                                <td><b>Current</b></td>
+                            </tr> 
+                                    
+                           
+                               
+                                <%
                                     String temp = "37.0";
                                     String rr = "20";
                                     String hr = "108";
@@ -221,27 +284,27 @@
                                     String spo2 = "";
                                     String intake2 = "";
                                     String output2 = "";
-                                    String firstTime="true";
-                                   boolean check= false;
-                                
-                                    String tempError = (String) request.getAttribute("tempError");
-                                    String rrError = (String) request.getAttribute("rrError");
-                                    String hrError = (String) request.getAttribute("hrError");
-                                    String bpError = (String) request.getAttribute("bpError");
-                                    String checking= (String) request.getAttribute("flag");
+                                    String firstTime = "true";
+                                    boolean check = false;
+
+                                     tempError = (String) request.getAttribute("tempError");
+                                     rrError = (String) request.getAttribute("rrError");
+                                     hrError = (String) request.getAttribute("hrError");
+                                     bpError = (String) request.getAttribute("bpError");
+                                    String checking = (String) request.getAttribute("flag");
                                     firstTime = (String) request.getAttribute("first");
-                                    if(checking !=null && checking.equals("true")){
+                                    if (checking != null && checking.equals("true")) {
                                         check = true;
                                     }
-                                    
-                                    if(firstTime != null && firstTime.equals("false")){
-                                        firstTime="false";
-                                    }else{
-                                        firstTime="true";
+
+                                    if (firstTime != null && firstTime.equals("false")) {
+                                        firstTime = "false";
+                                    } else {
+                                        firstTime = "true";
                                     }
-                                    
+
                                     if (tempError == null && rrError == null && hrError == null && bpError == null && check) {
-                                       
+
                                         temp = (String) request.getAttribute("temp");
                                         rr = (String) request.getAttribute("rr");
                                         hr = (String) request.getAttribute("hr");
@@ -252,18 +315,18 @@
                                         //out.println("<font color='green'>" + "You have updated successfully!" + "</font>");
                                     } else {
                                         if (tempError != null) {
-                                            tempErrorMsg= tempError;
+                                            tempErrorMsg = tempError;
                                             rr2 = (String) request.getAttribute("rr");
                                             hr2 = (String) request.getAttribute("hr");
                                             bp2 = (String) request.getAttribute("bp");
                                             spo2 = (String) request.getAttribute("spo");
                                             intake2 = (String) request.getAttribute("intake");
                                             output2 = (String) request.getAttribute("output");
-                                            temp2 =(String) request.getAttribute("temp");
+                                            temp2 = (String) request.getAttribute("temp");
                                         }
-                                        
-                                        if(rrError!=null){
-                                            rrErrorMsg= rrError;
+
+                                        if (rrError != null) {
+                                            rrErrorMsg = rrError;
                                             temp2 = (String) request.getAttribute("temp");
                                             hr2 = (String) request.getAttribute("hr");
                                             bp2 = (String) request.getAttribute("bp");
@@ -271,95 +334,102 @@
                                             intake2 = (String) request.getAttribute("intake");
                                             output2 = (String) request.getAttribute("output");
                                         }
-                                        
-                                        if(hrError!=null){
-                                            hrErrorMsg= hrError;
+
+                                        if (hrError != null) {
+                                            hrErrorMsg = hrError;
                                             temp2 = (String) request.getAttribute("temp");
                                             rr2 = (String) request.getAttribute("rr");
-                                        
+
                                             bp2 = (String) request.getAttribute("bp");
                                             spo2 = (String) request.getAttribute("spo");
                                             intake2 = (String) request.getAttribute("intake");
                                             output2 = (String) request.getAttribute("output");
                                         }
-                                        
-                                        if(bpError !=null){
-                                            bpErrorMsg= bpError;
+
+                                        if (bpError != null) {
+                                            bpErrorMsg = bpError;
                                             temp2 = (String) request.getAttribute("temp");
                                             rr2 = (String) request.getAttribute("rr");
                                             hr2 = (String) request.getAttribute("hr");
-                                        
+
                                             spo2 = (String) request.getAttribute("spo");
                                             intake2 = (String) request.getAttribute("intake");
                                             output2 = (String) request.getAttribute("output");
                                         }
                                     }
-                                    
-                                    if (!tempErrorMsg.equals("")) {
-                                    %>
-                                    <div data-alert class="alert-box alert radius"><%=tempErrorMsg%> </div>
-                                    
-                                    <% 
-                                    } else if (!rrErrorMsg.equals("")) { %>
-                                    <div data-alert class="alert-box alert radius"><%=rrErrorMsg%> </div>
-                                    
-                                    <% }
-                                    
-                                    else if (!hrErrorMsg.equals("")) { %>
-                                    <div data-alert class="alert-box alert radius"><%=hrErrorMsg%> </div>
-                                    
-                                   <% } else if (!bpErrorMsg.equals("")) { %>
-                                   <div data-alert class="alert-box alert radius"><%=bpErrorMsg%> </div>
-                                    
-                                   <% } 
-                                    else {
-                                        if(firstTime.equals("false")){
-                                        %>
-                                            <div data-alert class="alert-box success radius">You have updated successfully!</div>
 
-                             <%
-                                            
-                                            request.setAttribute("first","true");    
+                                   
+                                    if (firstTime.equals("false")) {
+                               
+                                            request.setAttribute("first", "true");
                                             session.removeAttribute("first");
                                         }
-                                    }
-                             %>
-                                    <tr><td><b>Temperature (ºC)</b></td>
+                                    
+                                %>
+                                <tr><td><b>Temperature (ºC)</b></td>
                                     <td><%=temp%></td>
-                                    <td><input type="text" name ="temperature" style="width:250px" value= "<% if (check == true){ out.println(temp2);}else{out.println("");}%>" required /></td></tr> 
+                                    <td><input type="text" name ="temperature" style="width:250px" value= "<% if (check == true) {
+                                            out.println(temp2);
+                                        } else {
+                                            out.println("");
+                                        }%>" required /></td></tr> 
                                 <tr><td><b>Respiratory Rate</b></td>
                                     <td><%=rr%></td>
-                                    <td><input type="text" name = "RR" style="width:250px" value="<% if (check==true){ out.println(rr2);}else{out.println("");}%>" required/></td></tr> 
+                                    <td><input type="text" name = "RR" style="width:250px" value="<% if (check == true) {
+                                            out.println(rr2);
+                                        } else {
+                                            out.println("");
+                                        }%>" required/></td></tr> 
                                 <tr><td><b>Heart Rate</b></td>
                                     <td><%=hr%></td>
-                                    <td><input type="text" name ="HR" style="width:250px" value="<% if (check==true){ out.println(hr2);}else{out.println("");}%>" required/></td></tr>
+                                    <td><input type="text" name ="HR" style="width:250px" value="<% if (check == true) {
+                                            out.println(hr2);
+                                        } else {
+                                            out.println("");
+                                        }%>" required/></td></tr>
                                 <tr><td><b>Blood Pressure</b></td>
                                     <td><%=bp%></td>
-                                    <td><input type="text" name ="BP" style="width:250px" value="<% if (check==true){ out.println(bp2);}else{out.println("");}%>" required/></td></tr>
+                                    <td><input type="text" name ="BP" style="width:250px" value="<% if (check == true) {
+                                            out.println(bp2);
+                                        } else {
+                                            out.println("");
+                                        }%>" required/></td></tr>
                                 <tr><td><b>SPO (%)</b></td>
                                     <td><%=spo%></td>
-                                    <td><input type="text" name ="SPO" style="width:250px" value="<% if (check==true){ out.println(spo2);}else{out.println("");}%>" required/></td></tr>
+                                    <td><input type="text" name ="SPO" style="width:250px" value="<% if (check == true) {
+                                            out.println(spo2);
+                                        } else {
+                                            out.println("");
+                                        }%>" required/></td></tr>
                                 <tr><td><b>Intake</b></td>
                                     <td><%=intake%></td>
-                                    <td><input type="text" name ="intake" style="width:250px"  value="<% if (check==true){ out.println(intake2);}else{out.println("");}%>" required/></td></tr>
+                                    <td><input type="text" name ="intake" style="width:250px"  value="<% if (check == true) {
+                                            out.println(intake2);
+                                        } else {
+                                            out.println("");
+                                        }%>" required/></td></tr>
                                 <tr><td><b>Output</b></td>
                                     <td><%=output%></td>
-                                    <td><input type="text" name ="output" style="width:250px" value="<% if (check==true){ out.println(output2);}else{out.println("");}%>" required/></td></tr>
-                        
+                                    <td><input type="text" name ="output" style="width:250px" value="<% if (check == true) {
+                                            out.println(output2);
+                                        } else {
+                                            out.println("");
+                                        }%>" required/></td></tr>
+
                         </table>
-                                    
+
                         <input type="Submit" value="Update Vitals" class="button"> 
                         </form>
-                   
+
                     </div>
 
-                    <div class="<% if (active != null && active.equals ( 
-                            "medication")) {
+                    <div class="<% if (active != null && active.equals(
+                                "medication")) {
                             out.println("content active");
                         } else {
                             out.println("content");
                         } %>" id="medication">
-                        
+
                         <form id='myform' action="processMedication.jsp">
                             <div class="content" id="medication">                     
 
@@ -461,37 +531,35 @@
                                 <p>
                                     <input type="submit" class="button small" value="Administer">
                                 </p>
-                                
-                                <% if(errorMsg != null || successMsg != null){
-                                session.removeAttribute("successMsg");
-                                session.removeAttribute("errorMsg");
-                                            session.removeAttribute("active");
-                                            session.removeAttribute("vital");
-                                }
-                                
+
+                                <% //if (errorMsg != null || successMsg != null) {
+                                        session.removeAttribute("successMsg");
+                                        session.removeAttribute("errorMsg");
+                                        session.removeAttribute("active");
+                                        session.removeAttribute("vital");
+                                   // }
+
                                 %>
                             </div>
-                            
-                            
-                            
+
+
+
                         </form>
-                        
-                        
-                        
+
+
+
                     </div>
 
-                    <div class="<% if (active!= null && active.equals ( 
-                            "multidisciplinary")) {
+                    <div class="<% if (active != null && active.equals(
+                                "multidisciplinary")) {
                             out.println("content active");
-                        }else {
+                        } else {
                             out.println("content");
                         } %>" id="multidisciplinary">
                         <p>
                             <%                                String msg = (String) request.getAttribute("successMsg");
                                 if (msg
-
-                                
-                                    != null) {
+                                        != null) {
                                     out.println(msg);
                                 }
                             %>
@@ -502,30 +570,22 @@
                                         String tutorialGrp = "";
                                         String grpNames = "";
                                         String notes = "";
-                                        notesList  = (String[]) session.getAttribute("notesList");
+                                        notesList = (String[]) session.getAttribute("notesList");
 
                                         if (submittedNotes
-
-                                        
-                                            != null) {
+                                                != null) {
                                             tutorialGrp = submittedNotes[0];
                                             grpNames = submittedNotes[1];
                                             notes = submittedNotes[2];
 
-                                        }
-                                        else if (notesList
-
-                                        
-                                            != null) {
+                                        } else if (notesList
+                                                != null) {
                                             tutorialGrp = notesList[0];
                                             grpNames = notesList[1];
                                             notes = notesList[2];
                                             out.println("not null");
                                             out.println(tutorialGrp);
-                                        }
-
-                                        
-                                            else {
+                                        } else {
                                             tutorialGrp = "";
                                             grpNames = "";
                                             notes = "";
@@ -535,7 +595,7 @@
                                         <div class="small-3 columns">
                                             <label for="right-label" class="right inline"><b>Tutorial Group</b></label>
                                             <label for="right-label" class="right inline"><b>Group Member Names</b></label>
-                                            <label for="right-label" class="right inline"><b>Multidisciplinary Note</b<</label>
+                                            <label for="right-label" class="right inline"><b>Multidisciplinary Note</b></label>
                                         </div>
                                         <div class="small-9 columns">
                                             <input type ="text" id= "tutorialGrp" name="tutorialGrp" value = "<%=tutorialGrp%>" required>
@@ -558,14 +618,12 @@
                                     <%
 
                                         if (submittedNotes
-
-                                        
-                                            != null) {%>
+                                                != null) {%>
                                     <div class="panel">
                                         <h5>Previous Multidisciplinary Notes</h5>
                                         <p>Tutorial Group: <%=tutorialGrp%></p>
                                         <p>Group Names: <%=grpNames%></p>
-                                        <p>Time Submitted: <%DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                                            <p>Time Submitted: <%DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                                                 Date date = new Date();%> <%=date%> </p>
                                         <p><%=notes%></p>
                                     </div>
