@@ -4,6 +4,10 @@
     Author     : hpkhoo.2012
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
@@ -24,7 +28,9 @@
     <body>
         <script src="js/foundation.min.js"></script>
         <br>
+        <%            String active = active = (String) session.getAttribute("active");
 
+        %>
         <div align ="center">
 
             <div class="large-centered large-10 columns">
@@ -42,47 +48,141 @@
                 </div></div>
 
             <div class="large-centered large-10 columns">
-                <%  //check for success message                   
-                    String[] notesList = (String[]) session.getAttribute("notesList");
-                    String[] submittedNotes = (String[]) session.getAttribute("submittedNotes");
-
-                    if (submittedNotes != null) {%>
+                <%String updated = (String) session.getAttribute("updated");
+                    
+                    if (updated != null && !updated.equals("")) {
+                %>
+                <div data-alert class="alert-box success radius">
+                    Reports updated successfully! Please check under existing report.
+                    <a href="#" class="close">&times;</a>
+                </div>
+                <%
+                        } else {
+                            out.println("");
+                        }
+                    
+                    //check for success message                   
+                    String[] notesList = (String[])session.getAttribute("notesList");
+                    String[] submittedNotes = (String[])session.getAttribute("submittedNotes");
+                    if (submittedNotes != null) { 
+                %>
                 <div data-alert class="alert-box success radius">
                     Notes successfully added.
                     <a href="#" class="close">&times;</a>
                 </div>
                 <%
-                
+
                     }%>
 
                 <div class="tabs-content">
                     <dl class="tabs" data-tab>
-                        <dd class="active"><a href="#admission">Admission Notes</a></dd>
-                        <dd><a href="#reports">Reports</a></dd>
-                        <dd><a href="#vital">Vital Signs</a></dd>
-                        <dd><a href="#medication">Medication</a></dd>
-                        <dd><a href="#multidisciplinary">Multidisciplinary Notes</a></dd>
+                        <dd class="<% if (active== null || active.equals ("") || active.equals("admission")) {out.println("active");}else {out.println("");} %>" ><a href="#admission">Admission Notes</a></dd>
+                        <dd class="<% if (active!= null && active.equals ("reports")) {out.println("active");}else {out.println(""); } %>"><a href="#reports">Reports</a></dd>
+                        <dd class="<% if (active!= null && active.equals ("vital")) {out.println("active");}else {out.println("");} %>"><a href="#vital">Vital Signs</a></dd>
+                        <dd class="<% if (active!= null && active.equals ("medication")) {out.println("active");}else {out.println("");} %>"><a href="#medication">Medication</a></dd>
+                        <dd class="<% if (active!= null && active.equals ("multidisciplinary")) {out.println("active"); }else { out.println(""); } %>"><a href="#multidisciplinary">Multidisciplinary Notes</a></dd>
                     </dl>
 
-                    <div class="content active" id="admission">
+                    <div class="<% if (active == null || active.equals ( "") || active.equals("admission")) {
+                            out.println("content active");
+                        }else {
+                            out.println("content");
+                        } %>" id="admission">
                         <p>Content to go here</p>
                     </div>
-                    <div class="content" id="reports">
+                    <div class="<% if (active!= null && active.equals ("reports")) {
+                            out.println("content active");
+                        }else {
+                            out.println("content");
+                        } %>" id="reports">
+
+                        <div class="row large-10 columns" align="left"> 
+                            <div class="small-10 columns" align="left"> 
+                                <h1>Retrieve Investigation Report</h1>
+
+
+                                <form  action = "processReport.jsp" method = "get"> 
+
+                                    <label><input type="checkbox" name="report" value="heartReport"> Heart Report<br></label>
+                                    <label> <input type="checkbox" name="report" value="xrayReport"> Xray Report</label><br>
+                                    <input type="submit" class="tiny button" value="Retrieve Report"/>   
+                                    <input type="hidden" name="locationXray" value="xray.jpg">
+                                    <input type="hidden" name="locationHeart" value="heartReport.png">
+                                </form>
+
+
+                                <%
+                                    HashMap<String, Date> reportsRetrieved = (HashMap<String, Date>) session.getAttribute("reports");
+
+                                    if (reportsRetrieved
+
+                                    != null && reportsRetrieved.size () 
+                                        > 0) {
+                                %>
+
+                                <h1>Existing Report</h1>
+                                <table>
+                                    <tr>
+                                        <td>Report Name</td>
+                                        <td>Report Retrieved On</td>
+                                    </tr>
+                                    <%
+                                        Set keys = reportsRetrieved.keySet();
+                                        Iterator iter = keys.iterator();
+                                        while (iter.hasNext()) {
+                                            String fileName = (String) iter.next();
+                                            String path = "reports/" + fileName;
+                                    %>
+                                    <tr>
+                                        <td><a href="<%=path%>"><%=fileName%></a></td>
+                                        <td><%=reportsRetrieved.get(fileName)%></td>
+                                    </tr>            
+
+                                    <%
+                                            }
+
+                                        }
+                                    session.removeAttribute ("updated");
+                                 session.removeAttribute ("active");
+                                        // else {
+                                        //      out.println("No existing reports yet.");
+                                        //    }
+                                    %>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="<% if (active!= null && active.equals ("vital")) {
+                            out.println("content active");
+                        }else {
+                            out.println("content");
+                        } %>" id="vital">
                         <p>Content to go here</p>
                     </div>
 
-                    <div class="content" id="vital">
+                    <div class="<% if (active != null && active.equals ( 
+                            "medication")) {
+                            out.println("content active");
+                        } else {
+                            out.println("content");
+                        } %>" id="medication">
                         <p>Content to go here</p>
                     </div>
 
-                    <div class="content" id="medication">
-                        <p>Content to go here</p>
-                    </div>
-
-                    <div class="content" id="multidisciplinary">
+                    <div class="<% if (active!= null && active.equals ( 
+                            "multidisciplinary")) {
+                            out.println("content active");
+                        }else {
+                            out.println("content");
+                        } %>" id="multidisciplinary">
                         <p>
                             <%                                String msg = (String) request.getAttribute("successMsg");
-                                if (msg != null) {
+                                if (msg
+
+                                
+                                    != null) {
                                     out.println(msg);
                                 }
                             %>
@@ -93,20 +193,30 @@
                                         String tutorialGrp = "";
                                         String grpNames = "";
                                         String notes = "";
-                                        notesList = (String[]) session.getAttribute("notesList");
+                                        notesList  = (String[]) session.getAttribute("notesList");
 
-                                        if (submittedNotes != null) {
+                                        if (submittedNotes
+
+                                        
+                                            != null) {
                                             tutorialGrp = submittedNotes[0];
                                             grpNames = submittedNotes[1];
                                             notes = submittedNotes[2];
 
-                                        } else if (notesList != null) {
+                                        }
+                                        else if (notesList
+
+                                        
+                                            != null) {
                                             tutorialGrp = notesList[0];
                                             grpNames = notesList[1];
                                             notes = notesList[2];
                                             out.println("not null");
                                             out.println(tutorialGrp);
-                                        } else {
+                                        }
+
+                                        
+                                            else {
                                             tutorialGrp = "";
                                             grpNames = "";
                                             notes = "";
@@ -138,17 +248,21 @@
 
                                     <%
 
-                                        if (submittedNotes != null) {%>
+                                        if (submittedNotes
+
+                                        
+                                            != null) {%>
                                     <div class="panel">
                                         <h5>Previous Multidisciplinary Notes</h5>
                                         <p>Tutorial Group: <%=tutorialGrp%></p>
                                         <p>Group Names: <%=grpNames%></p>
-                                            <p>Time Submitted: <%DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                                        <p>Time Submitted: <%DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                                                 Date date = new Date();%> <%=date%> </p>
                                         <p><%=notes%></p>
                                     </div>
                                     <%
                                             session.removeAttribute("submittedNotes");
+                                            session.removeAttribute("active");
                                         }
                                     %>
 
@@ -167,5 +281,6 @@
     </body>
     <script>
         $(document).foundation();
+
     </script>
 </html>

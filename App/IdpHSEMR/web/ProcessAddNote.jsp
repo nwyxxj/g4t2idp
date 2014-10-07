@@ -29,6 +29,7 @@
                 notesList[1] = grpName;
                 notesList[2] = notes;
                 session.setAttribute("notesList", notesList);
+                session.setAttribute("active", "multidisciplinary");
                 response.sendRedirect("viewPatientInformation.jsp");
 
             } else if (request.getParameter("submit") != null) {
@@ -41,6 +42,7 @@
                 notesList[2] = notes;
                 session.removeAttribute("notesList");
                 session.setAttribute("submittedNotes", notesList);
+                session.setAttribute("active", "multidisciplinary");
                 response.sendRedirect("viewPatientInformation.jsp");
             }
 
