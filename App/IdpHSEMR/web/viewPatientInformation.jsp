@@ -39,10 +39,10 @@
 
                 <div class="panel">
                     <h5><b>Patient's Information</b></h5>
-                    <span class="label">Name</span> Tan Ah Kao&nbsp;
+                    <span class="label">Name</span> Tan Mei Mei&nbsp;
                     <span class="label">NRIC</span> S1234567J&nbsp;
                     <span class="label">DOB</span> 04/03/1978&nbsp;
-                    <span class="label">Gender</span> Male&nbsp;
+                    <span class="label">Gender</span> Female&nbsp;
                     <span class="label">Allergy</span> Bactrim&nbsp;
                     </p>
                 </div></div>
@@ -113,7 +113,12 @@
                         }else {
                             out.println("content");
                         } %>" id="admission">
-                        <p>Content to go here</p>
+                       
+                            <p style="margin-left:1em; margin-right:1em; text-align:justify;">A recently divorced, 36 year-old female, was admitted to the hospital for abdominal hysterectomy with bilateral due to large uterine fibroids. 
+                                Over the years, she had increasing pain. She was advised to seek surgical intervention, she elected to wait due to personal issues. 
+                                During the period of postponing, she required two outpatient blood transfusion. 
+                                Her lab values included haemoglobin of 8.4ml and haematocrit of 32%. 
+                                Night nurse reports that patient slept in earlier part of shift, but awake and complain of discomfort since 0430 hours.</p>
                     </div>
                     <div class="<% if (active!= null && active.equals ("reports")) {
                             out.println("content active");

@@ -27,7 +27,7 @@
                             out.println("<tr>");
                         }
                         if (ward.equals("Bed 3")) {%>
-                        <td height = "200" width ="150" bgcolor = WhiteSmoke><a href="viewPatientInformation.jsp"><b><%=ward%><br></b>Occupied<br>Tan Ah Kao<br>NRIC: S1234567J<br></a><br></td>
+                        <td height = "200" width ="150" bgcolor = WhiteSmoke><a href="viewPatientInformation.jsp"><b><%=ward%><br></b>Occupied<br>Tan Mei Mei<br>NRIC: S1234567J<br></a><br></td>
                             <%} else {%>
                 <td height = "200" width ="150" bgcolor = "92d400"> <b><%=ward%><br></b>Available<br></td>
                     <%}%>
