@@ -46,7 +46,7 @@
                     <span class="label">Allergy</span> Bactrim&nbsp;
                     </p>
                 </div></div>
-
+<!-- Error Message -->
             <div class="large-centered large-10 columns">
                 <%String updated = (String) session.getAttribute("updated");
                     
@@ -73,6 +73,31 @@
                 <%
 
                     }%>
+                    
+                     <%                                
+                    String successMsg = (String) request.getAttribute("successMsg");
+                            if (successMsg != null) {
+                                %>
+                         <div data-alert class="alert-box success radius">
+                    Patient administered successfully
+                    <a href="#" class="close">&times;</a>
+                </div>
+                        <%
+                            }
+                            
+                           String errorMsg = "";
+                           errorMsg = (String) request.getAttribute("errorMsg");
+                            if (errorMsg != null) {
+                                %>
+                                <div data-alert class="alert-box alert radius"> 
+                                Please scan the correct bar codes 
+                                </div>
+                                <%
+                               
+                            } 
+                        %>
+                    
+                    <!-- Error Message end-->
 
                 <div class="tabs-content">
                     <dl class="tabs" data-tab>
@@ -329,7 +354,125 @@
                         } else {
                             out.println("content");
                         } %>" id="medication">
-                        <p>Content to go here</p>
+                        
+                        <form id='myform' action="processMedication.jsp">
+                            <div class="content" id="medication">                     
+
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <label for="patientBarcode"><b>Patient's Barcode</b> </label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type ="text"  id="patientBarcode" name="patientBarcode" required>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="patientBarcode"><b>Medicine Barcode </b></label>
+                                        </td>
+                                        <td>
+                                            <label for="medicineName"><b>Medication Name </b></label>
+                                        </td>
+                                        <td>
+                                            <label for="route"><b>Route</b></label>
+                                        </td>
+                                        <td>
+                                            <label for="dosage"><b>Dosage </b></label>
+                                        </td>
+                                        <td>
+                                            <label for="frequency"><b>Frequency </b></label>
+                                        </td>
+                                        <td>
+                                            <label for="doctorName"><b>Doctor Name</b> </label>
+                                        </td>
+                                        <td>
+                                            <label for="location"><b>Location </b></label>
+                                        </td>
+                                        <td>
+                                            <label for="lastAdministered"><b>Last Administered</b></label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type ="text" id="med1" name="med1" required>
+                                        </td>
+                                        <td>
+                                            Epinephrine
+                                        </td>
+                                        <td>
+                                            P.O
+                                        </td>
+                                        <td>
+                                            200ml
+                                        </td>
+                                        <td>
+                                            Q.AM
+                                        </td>
+                                        <td>
+                                            James
+                                        </td>
+                                        <td>
+                                            Row: A<br/>
+                                            Column: 2
+                                        </td>
+                                        <td>
+                                            22/10/2014 <br>
+                                            13:24 PM                                    
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type ="text" id="med2" name="med2" required>
+                                        </td>
+                                        <td>
+                                            Olanzapine
+                                        </td>
+                                        <td>
+                                            P.O
+                                        </td>
+                                        <td>
+                                            2 Tablet
+                                        </td>
+                                        <td>
+                                            Q.AM
+                                        </td>
+                                        <td>
+                                            James
+                                        </td>
+                                        <td>
+                                            Row: A<br/>
+                                            Column: 2
+                                        </td>
+                                        <td>
+                                            22/10/2014 <br>
+                                            13:24 PM                                    
+                                        </td>
+                                    </tr>
+                                </table>
+                                <p>
+                                    <input type="submit" class="button small" value="Administer">
+                                </p>
+                                
+                                <% if(errorMsg != null || successMsg != null){
+                                session.removeAttribute("successMsg");
+                                session.removeAttribute("errorMsg");
+                                            session.removeAttribute("active");
+                                            session.removeAttribute("vital");
+                                }
+                                
+                                %>
+                            </div>
+                            
+                            
+                            
+                        </form>
+                        
+                        
+                        
                     </div>
 
                     <div class="<% if (active!= null && active.equals ( 
