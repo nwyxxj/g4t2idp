@@ -154,12 +154,173 @@
                         </div>
                     </div>
 
-                    <div class="<% if (active!= null && active.equals ("vital")) {
-                            out.println("content active");
+                    <div class="<% if (active!= null && active.equals ("vital")) { out.println("content active");
                         }else {
                             out.println("content");
                         } %>" id="vital">
-                        <p>Content to go here</p>
+                        
+                       
+                        <table border = "0">   
+                            <tr><td></td>
+                                <% Date dateTime=null; 
+                                   dateTime= (Date) request.getAttribute("dateTime");
+                                   
+                                %>
+                                <td style="width:270px;"><b>Last Updated :<br><% if(dateTime== null ){ out.println("Tue Oct 07 13:04:38 SGT 2014");} else{ out.println(dateTime); }%> </b></td> 
+                                
+                                <td><b>Current</b></td>
+                            </tr>
+                            <form action="processVitalSign.jsp">
+
+                                <%                                    
+                                    String temp = "37.0";
+                                    String rr = "20";
+                                    String hr = "108";
+                                    String bp = "88/55";
+                                    String spo = "92% with O2";
+                                    String intake = "fruits";
+                                    String output = "50";
+                                    String tempErrorMsg = "";
+                                    String rrErrorMsg = "";
+                                    String hrErrorMsg = "";
+                                    String bpErrorMsg = "";
+                                    String temp2 = "";
+                                    String rr2 = "";
+                                    String hr2 = "";
+                                    String bp2 = "";
+                                    String spo2 = "";
+                                    String intake2 = "";
+                                    String output2 = "";
+                                    String firstTime="true";
+                                   boolean check= false;
+                                
+                                    String tempError = (String) request.getAttribute("tempError");
+                                    String rrError = (String) request.getAttribute("rrError");
+                                    String hrError = (String) request.getAttribute("hrError");
+                                    String bpError = (String) request.getAttribute("bpError");
+                                    String checking= (String) request.getAttribute("flag");
+                                    firstTime = (String) request.getAttribute("first");
+                                    if(checking !=null && checking.equals("true")){
+                                        check = true;
+                                    }
+                                    
+                                    if(firstTime != null && firstTime.equals("false")){
+                                        firstTime="false";
+                                    }else{
+                                        firstTime="true";
+                                    }
+                                    
+                                    if (tempError == null && rrError == null && hrError == null && bpError == null && check) {
+                                       
+                                        temp = (String) request.getAttribute("temp");
+                                        rr = (String) request.getAttribute("rr");
+                                        hr = (String) request.getAttribute("hr");
+                                        bp = (String) request.getAttribute("bp");
+                                        spo = (String) request.getAttribute("spo");
+                                        intake = (String) request.getAttribute("intake");
+                                        output = (String) request.getAttribute("output");
+                                        //out.println("<font color='green'>" + "You have updated successfully!" + "</font>");
+                                    } else {
+                                        if (tempError != null) {
+                                            tempErrorMsg= tempError;
+                                            rr2 = (String) request.getAttribute("rr");
+                                            hr2 = (String) request.getAttribute("hr");
+                                            bp2 = (String) request.getAttribute("bp");
+                                            spo2 = (String) request.getAttribute("spo");
+                                            intake2 = (String) request.getAttribute("intake");
+                                            output2 = (String) request.getAttribute("output");
+                                            temp2 =(String) request.getAttribute("temp");
+                                        }
+                                        
+                                        if(rrError!=null){
+                                            rrErrorMsg= rrError;
+                                            temp2 = (String) request.getAttribute("temp");
+                                            hr2 = (String) request.getAttribute("hr");
+                                            bp2 = (String) request.getAttribute("bp");
+                                            spo2 = (String) request.getAttribute("spo");
+                                            intake2 = (String) request.getAttribute("intake");
+                                            output2 = (String) request.getAttribute("output");
+                                        }
+                                        
+                                        if(hrError!=null){
+                                            hrErrorMsg= hrError;
+                                            temp2 = (String) request.getAttribute("temp");
+                                            rr2 = (String) request.getAttribute("rr");
+                                        
+                                            bp2 = (String) request.getAttribute("bp");
+                                            spo2 = (String) request.getAttribute("spo");
+                                            intake2 = (String) request.getAttribute("intake");
+                                            output2 = (String) request.getAttribute("output");
+                                        }
+                                        
+                                        if(bpError !=null){
+                                            bpErrorMsg= bpError;
+                                            temp2 = (String) request.getAttribute("temp");
+                                            rr2 = (String) request.getAttribute("rr");
+                                            hr2 = (String) request.getAttribute("hr");
+                                        
+                                            spo2 = (String) request.getAttribute("spo");
+                                            intake2 = (String) request.getAttribute("intake");
+                                            output2 = (String) request.getAttribute("output");
+                                        }
+                                    }
+                                    
+                                    if (!tempErrorMsg.equals("")) {
+                                    %>
+                                    <div data-alert class="alert-box alert radius"><%=tempErrorMsg%> </div>
+                                    
+                                    <% 
+                                    } else if (!rrErrorMsg.equals("")) { %>
+                                    <div data-alert class="alert-box alert radius"><%=rrErrorMsg%> </div>
+                                    
+                                    <% }
+                                    
+                                    else if (!hrErrorMsg.equals("")) { %>
+                                    <div data-alert class="alert-box alert radius"><%=hrErrorMsg%> </div>
+                                    
+                                   <% } else if (!bpErrorMsg.equals("")) { %>
+                                   <div data-alert class="alert-box alert radius"><%=bpErrorMsg%> </div>
+                                    
+                                   <% } 
+                                    else {
+                                        if(firstTime.equals("false")){
+                                        %>
+                                            <div data-alert class="alert-box success radius">You have updated successfully!</div>
+
+                             <%
+                                            
+                                            request.setAttribute("first","true");    
+                                            session.removeAttribute("first");
+                                        }
+                                    }
+                             %>
+                                    <tr><td><b>Temperature (ºC)</b></td>
+                                    <td><%=temp%></td>
+                                    <td><input type="text" name ="temperature" style="width:250px" value= "<% if (check == true){ out.println(temp2);}else{out.println("");}%>" required /></td></tr> 
+                                <tr><td><b>Respiratory Rate</b></td>
+                                    <td><%=rr%></td>
+                                    <td><input type="text" name = "RR" style="width:250px" value="<% if (check==true){ out.println(rr2);}else{out.println("");}%>" required/></td></tr> 
+                                <tr><td><b>Heart Rate</b></td>
+                                    <td><%=hr%></td>
+                                    <td><input type="text" name ="HR" style="width:250px" value="<% if (check==true){ out.println(hr2);}else{out.println("");}%>" required/></td></tr>
+                                <tr><td><b>Blood Pressure</b></td>
+                                    <td><%=bp%></td>
+                                    <td><input type="text" name ="BP" style="width:250px" value="<% if (check==true){ out.println(bp2);}else{out.println("");}%>" required/></td></tr>
+                                <tr><td><b>SPO (%)</b></td>
+                                    <td><%=spo%></td>
+                                    <td><input type="text" name ="SPO" style="width:250px" value="<% if (check==true){ out.println(spo2);}else{out.println("");}%>" required/></td></tr>
+                                <tr><td><b>Intake</b></td>
+                                    <td><%=intake%></td>
+                                    <td><input type="text" name ="intake" style="width:250px"  value="<% if (check==true){ out.println(intake2);}else{out.println("");}%>" required/></td></tr>
+                                <tr><td><b>Output</b></td>
+                                    <td><%=output%></td>
+                                    <td><input type="text" name ="output" style="width:250px" value="<% if (check==true){ out.println(output2);}else{out.println("");}%>" required/></td></tr>
+                        
+                        </table>
+                                    
+                        <input type="Submit" value="Update Vitals" class="button"> 
+                        </form>
+                   
                     </div>
 
                     <div class="<% if (active != null && active.equals ( 
@@ -263,6 +424,7 @@
                                     <%
                                             session.removeAttribute("submittedNotes");
                                             session.removeAttribute("active");
+                                            session.removeAttribute("vital");
                                         }
                                     %>
 
