@@ -15,13 +15,11 @@
     </head>
     <body>
         
-        <body style="background-image:url(img/loginBackground_v2.jpg)"></body>
+        <body style="background-image:url(img/loginBackground.jpg)"></body>
         <div class="row" style="padding-top: 30px;">
 
             <center>
-
-                <h1>HSEMR</h1>
-
+                <br><br><br><br><br><br><br><br><br><br>
                 <div class="large-centered large-4 columns" style = "padding-top:30px;">
 
                     <%
@@ -60,11 +58,11 @@
 
 
                         
-                        <div style="margin-left:200px;">
-                            <p>
-                            <input type="submit" class="button small" value="Log in">
-                         </p>
-                        </div>
+<!--                        <div style="margin-left:200px;">
+                            <p>-->
+                            <input type="submit" class="button expand" value="Log in">
+<!--                         </p>
+                        </div>-->
                        
 
 

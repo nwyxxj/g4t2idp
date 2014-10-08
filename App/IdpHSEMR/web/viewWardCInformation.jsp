@@ -27,9 +27,9 @@
                             out.println("<tr>");
                         }
                         if (ward.equals("Bed 3")) {%>
-                 <td height = "200" width ="150" bgcolor = WhiteSmoke><b><%=ward%></b><br>Available<br></td>
+                 <td height = "200" width ="150" bgcolor = "92d400"><b><%=ward%></b><br>Available<br></td>
                             <%} else {%>
-                <td height = "200" width ="150" bgcolor = WhiteSmoke><b><%=ward%></b><br>Available<br></td>
+                <td height = "200" width ="150" bgcolor = "92d400"><b><%=ward%></b><br>Available<br></td>
                     <%}%>
 
                 <%}
