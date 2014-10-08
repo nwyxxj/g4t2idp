@@ -1161,7 +1161,7 @@ button, .button {
   button.expand, .button.expand {
     padding-right: 0;
     padding-left: 0;
-    width: 100%; }
+    width: 300px; }
   button.left-align, .button.left-align {
     text-align: left;
     text-indent: 0.75rem; }
@@ -3170,7 +3170,8 @@ ul.pagination {
         top: 48%;
         margin-left: -0.375rem; }
   .split.button.expand {
-    padding-left: 2rem; }
+    padding-left: 2rem; 
+  }
   .split.button.secondary span:after {
     border-color: #333333 transparent transparent transparent; }
   .split.button.radius span {

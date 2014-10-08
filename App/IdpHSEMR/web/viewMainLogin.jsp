@@ -56,13 +56,9 @@
                             </tr>
                         </table>
 
-
-                        
-<!--                        <div style="margin-left:200px;">
-                            <p>-->
                             <input type="submit" class="button expand" value="Log in">
 <!--                         </p>
-                        </div>-->
+
                        
 
 
