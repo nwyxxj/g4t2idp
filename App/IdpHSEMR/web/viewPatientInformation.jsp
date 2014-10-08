@@ -583,8 +583,6 @@
                                             tutorialGrp = notesList[0];
                                             grpNames = notesList[1];
                                             notes = notesList[2];
-                                            out.println("not null");
-                                            out.println(tutorialGrp);
                                         } else {
                                             tutorialGrp = "";
                                             grpNames = "";

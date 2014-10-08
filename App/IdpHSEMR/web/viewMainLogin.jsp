@@ -14,6 +14,8 @@
         
     </head>
     <body>
+        
+        <body style="background-image:url(img/loginBackground_v2.jpg)"></body>
         <div class="row" style="padding-top: 30px;">
 
             <center>
