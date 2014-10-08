@@ -67,70 +67,76 @@
                     if (submittedNotes != null) {
                 %>
                 <div data-alert class="alert-box success radius">
-                    Notes successfully added.
+                    Notes successfully added!
                     <a href="#" class="close">&times;</a>
                 </div>
                 <%
                     }%>
 
                 <%
-                    String successMsg = (String) request.getAttribute("successMsg");
-                    if (successMsg != null) {
+                    String successMsg = (String) session.getAttribute("successMsg");
+                    String errorMsg = errorMsg = (String) session.getAttribute("errorMsg");
+                    if (errorMsg == null && successMsg != null) {
                 %>
                 <div data-alert class="alert-box success radius">
-                    Patient administered successfully
+                    Patient administered successfully!
                     <a href="#" class="close">&times;</a>
                 </div>
                 <%
-                    }
-
-                    String errorMsg = "";
-                    errorMsg = (String) request.getAttribute("errorMsg");
+                    } 
+                    
                     if (errorMsg != null) {
                 %>
                 <div data-alert class="alert-box alert radius"> 
-                    Please scan the correct bar codes 
+                        Please scan the correct bar codes. 
+                        <a href="#" class="close">&times;</a>
                 </div>
                 <%
                     }
+                    
                 %>
 
                 <%
-                    String tempError = (String) request.getAttribute("tempError");
-                    String rrError = (String) request.getAttribute("rrError");
-                    String hrError = (String) request.getAttribute("hrError");
-                    String bpError = (String) request.getAttribute("bpError");
-                    String first_time = (String)request.getAttribute("first");
+                    String tempError = (String) session.getAttribute("tempError");
+                    String rrError = (String) session.getAttribute("rrError");
+                    String hrError = (String) session.getAttribute("hrError");
+                    String bpError = (String) session.getAttribute("bpError");
+                    String first_time = (String)session.getAttribute("first");
 
                     if (tempError != null) {
                 %>
                 <div data-alert class="alert-box alert radius"> 
-                    Temperature- Please enter a valid Temp. e.g) 0.00-100.00ºC
+                    Temperature- Please enter a valid Temp. e.g) 0.00-100.00ºC.
+                    <a href="#" class="close">&times;</a>
                 </div>
                 <%
                     } else if (rrError != null){
                      %>
                 <div data-alert class="alert-box alert radius"> 
-                    Respiratory Rate- Please enter a valid RR
+                    Respiratory Rate- Please enter a valid RR.
+                    <a href="#" class="close">&times;</a>
                 </div>
                 <%
                     }else if (hrError != null){
                      %>
                 <div data-alert class="alert-box alert radius"> 
-                    Heart Rate- Please enter a valid HR
+                    Heart Rate- Please enter a valid HR.
+                    <a href="#" class="close">&times;</a>
                 </div>
                 <%
                     }else if (bpError != null){
                      %>
                 <div data-alert class="alert-box alert radius"> 
-                   Blood Pressure- Please enter a valid BP
+                   Blood Pressure- Please enter a valid BP.
+                   <a href="#" class="close">&times;</a>
                 </div>
                 <%
                     }else if (first_time != null){
                      %>
              
-                    <div data-alert class="alert-box success radius">You have updated successfully!</div>
-                
+                    <div data-alert class="alert-box success radius">Vital signs updated successfully!
+                        <a href="#" class="close">&times;</a>
+                        </div>
                 <%
                     }
                 %>
@@ -247,15 +253,15 @@
                             out.println("content");
                         } %>" id="vital">
 
- <form action="processVitalSign.jsp">
+                      <form action="processVitalSign.jsp">
                         <table border = "0">   
                             <tr><td></td>
-                                <% Date dateTime = null;
-                                    dateTime = (Date) request.getAttribute("dateTime");
-
+                                <% String dateTime = null;
+                                    
+                                    dateTime = (String) session.getAttribute("dateTime");
                                 %>
                                 <td style="width:270px;"><b>Last Updated :<br><% if (dateTime == null) {
-                                        out.println("Tue Oct 07 13:04:38 SGT 2014");
+                                        out.println("2014/10/08 16:35:21");
                                     } else {
                                         out.println(dateTime);
                                     }%> </b></td> 
@@ -287,12 +293,12 @@
                                     String firstTime = "true";
                                     boolean check = false;
 
-                                     tempError = (String) request.getAttribute("tempError");
-                                     rrError = (String) request.getAttribute("rrError");
-                                     hrError = (String) request.getAttribute("hrError");
-                                     bpError = (String) request.getAttribute("bpError");
-                                    String checking = (String) request.getAttribute("flag");
-                                    firstTime = (String) request.getAttribute("first");
+                                    tempError = (String) session.getAttribute("tempError");
+                                    rrError = (String) session.getAttribute("rrError");
+                                    hrError = (String) session.getAttribute("hrError");
+                                    bpError = (String) session.getAttribute("bpError");
+                                    String checking = (String) session.getAttribute("flag");
+                                    firstTime = (String) session.getAttribute("first");
                                     if (checking != null && checking.equals("true")) {
                                         check = true;
                                     }
@@ -305,63 +311,63 @@
 
                                     if (tempError == null && rrError == null && hrError == null && bpError == null && check) {
 
-                                        temp = (String) request.getAttribute("temp");
-                                        rr = (String) request.getAttribute("rr");
-                                        hr = (String) request.getAttribute("hr");
-                                        bp = (String) request.getAttribute("bp");
-                                        spo = (String) request.getAttribute("spo");
-                                        intake = (String) request.getAttribute("intake");
-                                        output = (String) request.getAttribute("output");
+                                        temp = (String) session.getAttribute("temp");
+                                        rr = (String) session.getAttribute("rr");
+                                        hr = (String) session.getAttribute("hr");
+                                        bp = (String) session.getAttribute("bp");
+                                        spo = (String) session.getAttribute("spo");
+                                        intake = (String) session.getAttribute("intake");
+                                        output = (String) session.getAttribute("output");
                                         //out.println("<font color='green'>" + "You have updated successfully!" + "</font>");
                                     } else {
                                         if (tempError != null) {
                                             tempErrorMsg = tempError;
-                                            rr2 = (String) request.getAttribute("rr");
-                                            hr2 = (String) request.getAttribute("hr");
-                                            bp2 = (String) request.getAttribute("bp");
-                                            spo2 = (String) request.getAttribute("spo");
-                                            intake2 = (String) request.getAttribute("intake");
-                                            output2 = (String) request.getAttribute("output");
-                                            temp2 = (String) request.getAttribute("temp");
+                                            rr2 = (String) session.getAttribute("rr");
+                                            hr2 = (String) session.getAttribute("hr");
+                                            bp2 = (String) session.getAttribute("bp");
+                                            spo2 = (String) session.getAttribute("spo");
+                                            intake2 = (String) session.getAttribute("intake");
+                                            output2 = (String) session.getAttribute("output");
+                                            temp2 = (String) session.getAttribute("temp");
                                         }
 
                                         if (rrError != null) {
                                             rrErrorMsg = rrError;
-                                            temp2 = (String) request.getAttribute("temp");
-                                            hr2 = (String) request.getAttribute("hr");
-                                            bp2 = (String) request.getAttribute("bp");
-                                            spo2 = (String) request.getAttribute("spo");
-                                            intake2 = (String) request.getAttribute("intake");
-                                            output2 = (String) request.getAttribute("output");
+                                            temp2 = (String) session.getAttribute("temp");
+                                            hr2 = (String) session.getAttribute("hr");
+                                            bp2 = (String) session.getAttribute("bp");
+                                            spo2 = (String) session.getAttribute("spo");
+                                            intake2 = (String) session.getAttribute("intake");
+                                            output2 = (String) session.getAttribute("output");
                                         }
 
                                         if (hrError != null) {
                                             hrErrorMsg = hrError;
-                                            temp2 = (String) request.getAttribute("temp");
-                                            rr2 = (String) request.getAttribute("rr");
+                                            temp2 = (String) session.getAttribute("temp");
+                                            rr2 = (String) session.getAttribute("rr");
 
-                                            bp2 = (String) request.getAttribute("bp");
-                                            spo2 = (String) request.getAttribute("spo");
-                                            intake2 = (String) request.getAttribute("intake");
-                                            output2 = (String) request.getAttribute("output");
+                                            bp2 = (String) session.getAttribute("bp");
+                                            spo2 = (String) session.getAttribute("spo");
+                                            intake2 = (String) session.getAttribute("intake");
+                                            output2 = (String) session.getAttribute("output");
                                         }
 
                                         if (bpError != null) {
                                             bpErrorMsg = bpError;
-                                            temp2 = (String) request.getAttribute("temp");
-                                            rr2 = (String) request.getAttribute("rr");
-                                            hr2 = (String) request.getAttribute("hr");
+                                            temp2 = (String) session.getAttribute("temp");
+                                            rr2 = (String) session.getAttribute("rr");
+                                            hr2 = (String) session.getAttribute("hr");
 
-                                            spo2 = (String) request.getAttribute("spo");
-                                            intake2 = (String) request.getAttribute("intake");
-                                            output2 = (String) request.getAttribute("output");
+                                            spo2 = (String) session.getAttribute("spo");
+                                            intake2 = (String) session.getAttribute("intake");
+                                            output2 = (String) session.getAttribute("output");
                                         }
                                     }
 
                                    
                                     if (firstTime.equals("false")) {
                                
-                                            request.setAttribute("first", "true");
+                                            session.setAttribute("first", "true");
                                             session.removeAttribute("first");
                                         }
                                     
@@ -415,7 +421,17 @@
                                         } else {
                                             out.println("");
                                         }%>" required/></td></tr>
+                                   
+                                <%
+                                    session.removeAttribute("vital");
+                                    session.removeAttribute("tempError");
+                                    session.removeAttribute("rrError");
+                                    session.removeAttribute("hrError");
+                                    session.removeAttribute("bpError");
+                                    session.removeAttribute("first");
+                                    session.removeAttribute("active");
 
+                                %>
                         </table>
 
                         <input type="Submit" value="Update Vitals" class="button"> 
@@ -536,7 +552,6 @@
                                         session.removeAttribute("successMsg");
                                         session.removeAttribute("errorMsg");
                                         session.removeAttribute("active");
-                                        session.removeAttribute("vital");
                                    // }
 
                                 %>
@@ -628,7 +643,6 @@
                                     <%
                                             session.removeAttribute("submittedNotes");
                                             session.removeAttribute("active");
-                                            session.removeAttribute("vital");
                                         }
                                     %>
 

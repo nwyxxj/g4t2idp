@@ -4,6 +4,8 @@
     Author     : hpkhoo.2012
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,7 +24,7 @@
             boolean bpCheck= true;
          
             //String checkThatItHasComeToThisPage = request.getParameter("check");
-
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             String temp = request.getParameter("temperature");
             String RR = request.getParameter("RR");
             String HR = request.getParameter("HR");
@@ -73,64 +75,65 @@
             
 
             if (tempCheck) {
-                request.setAttribute("temp", temp);
+                session.setAttribute("temp", temp);
             } else {
-                request.setAttribute("tempError", "Temperature- Please enter a valid Temp. e.g) 0.00-100.00ºC");
-                request.setAttribute("temp", temp);
-                request.setAttribute("rr", RR);
-                request.setAttribute("hr", HR);
-                request.setAttribute("bp", BP);
+                session.setAttribute("tempError", "Temperature- Please enter a valid Temp. e.g) 0.00-100.00ºC");
+                session.setAttribute("temp", temp);
+                session.setAttribute("rr", RR);
+                session.setAttribute("hr", HR);
+                session.setAttribute("bp", BP);
                 
                
             }
 
             if (rrCheck) {
-                request.setAttribute("rr", RR);
+                session.setAttribute("rr", RR);
             } else {
-               request.setAttribute("rrError", "Respiratory Rate- Please enter a valid RR.");
-               request.setAttribute("temp", temp);
-                request.setAttribute("rr", RR);
-                request.setAttribute("hr", HR);
-                request.setAttribute("bp", BP);
+               session.setAttribute("rrError", "Respiratory Rate- Please enter a valid RR.");
+               session.setAttribute("temp", temp);
+                session.setAttribute("rr", RR);
+                session.setAttribute("hr", HR);
+                session.setAttribute("bp", BP);
                 
             }
 
             if (hrCheck) {
-                request.setAttribute("hr", HR);
+                session.setAttribute("hr", HR);
             } else {
-                 request.setAttribute("hrError", "Heart Rate- Please enter a valid HR.");
-                 request.setAttribute("temp", temp);
-                request.setAttribute("rr", RR);
-                request.setAttribute("hr", HR);
-                request.setAttribute("bp", BP);
+                 session.setAttribute("hrError", "Heart Rate- Please enter a valid HR.");
+                 session.setAttribute("temp", temp);
+                session.setAttribute("rr", RR);
+                session.setAttribute("hr", HR);
+                session.setAttribute("bp", BP);
                 
             }
             
             if(bpCheck) {
-                request.setAttribute("bp", BP);
+                session.setAttribute("bp", BP);
             }else {
-                request.setAttribute("bpError", "Blood Pressure- Please enter a valid BP");
-                request.setAttribute("temp", temp);
-                request.setAttribute("rr", RR);
-                request.setAttribute("hr", HR);
-                request.setAttribute("bp", BP);
+                session.setAttribute("bpError", "Blood Pressure- Please enter a valid BP");
+                session.setAttribute("temp", temp);
+                session.setAttribute("rr", RR);
+                session.setAttribute("hr", HR);
+                session.setAttribute("bp", BP);
                 
             }
            
             
-            request.setAttribute("spo", SPO);
-            request.setAttribute("intake", intake);
-            request.setAttribute("output", output);
-            request.setAttribute("flag", "true");
-            request.setAttribute("first", "false");
+            session.setAttribute("spo", SPO);
+            session.setAttribute("intake", intake);
+            session.setAttribute("output", output);
+            session.setAttribute("flag", "true");
+            session.setAttribute("first", "false");
             
             if(bpCheck && hrCheck && rrCheck && tempCheck){
-                request.setAttribute("dateTime", new Date());
+                session.setAttribute("dateTime", dateFormat.format(new Date()));
             }
             session.setAttribute("active", "vital");
             
-           RequestDispatcher rd = request.getRequestDispatcher("/viewPatientInformation.jsp");
-            rd.forward(request, response); 
+//            RequestDispatcher rd = request.getRequestDispatcher("/viewPatientInformation.jsp");
+//            rd.forward(request, response); 
+            response.sendRedirect("viewPatientInformation.jsp");
 //            RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/viewPatientInformation.jsp");
 //            dispatch.forward(request, response);
         %> 
