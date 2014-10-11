@@ -16,24 +16,22 @@
 <%@include file="protect.jsp"%>
 
 <html>
-    <script src="js/foundation.min.js"></script>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/vendor/modernizr.js"></script>
-   
-    
     <head>
+        <script src="js/foundation.min.js"></script>
+        <script src="js/vendor/jquery.js"></script>
+        <script src="js/vendor/modernizr.js"></script>
+        <script src="js/foundation/foundation.reveal.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/foundation.css" />
         <script type="text/javascript" src="js/dygraph-combined.js"></script>                         
-           
+
         <title>Patient Information</title>
-        <%@include file="topbar.jsp"%>
-         
+        <%@include file="topbar.jsp"%> 
     </head>
 
     <body>
         <script src="js/foundation.min.js"></script>
-                
+
         <br>
         <%            String active = active = (String) session.getAttribute("active");
 
@@ -90,25 +88,24 @@
                     <a href="#" class="close">&times;</a>
                 </div>
                 <%
-                    } 
-                    
+                    }
+
                     if (errorMsg != null) {
                 %>
                 <div data-alert class="alert-box alert radius"> 
-                        Please scan the correct bar codes. 
-                        <a href="#" class="close">&times;</a>
+                    Please scan the correct bar codes. 
+                    <a href="#" class="close">&times;</a>
                 </div>
                 <%
                     }
-                    
+
                 %>
 
-                <%
-                    String tempError = (String) session.getAttribute("tempError");
+                <%                    String tempError = (String) session.getAttribute("tempError");
                     String rrError = (String) session.getAttribute("rrError");
                     String hrError = (String) session.getAttribute("hrError");
                     String bpError = (String) session.getAttribute("bpError");
-                    String first_time = (String)session.getAttribute("first");
+                    String first_time = (String) session.getAttribute("first");
 
                     if (tempError != null) {
                 %>
@@ -117,33 +114,33 @@
                     <a href="#" class="close">&times;</a>
                 </div>
                 <%
-                    } else if (rrError != null){
-                     %>
+                } else if (rrError != null) {
+                %>
                 <div data-alert class="alert-box alert radius"> 
                     Respiratory Rate- Please enter a valid RR.
                     <a href="#" class="close">&times;</a>
                 </div>
                 <%
-                    }else if (hrError != null){
-                     %>
+                } else if (hrError != null) {
+                %>
                 <div data-alert class="alert-box alert radius"> 
                     Heart Rate- Please enter a valid HR.
                     <a href="#" class="close">&times;</a>
                 </div>
                 <%
-                    }else if (bpError != null){
-                     %>
+                } else if (bpError != null) {
+                %>
                 <div data-alert class="alert-box alert radius"> 
-                   Blood Pressure- Please enter a valid BP.
-                   <a href="#" class="close">&times;</a>
+                    Blood Pressure- Please enter a valid BP.
+                    <a href="#" class="close">&times;</a>
                 </div>
                 <%
-                    }else if (first_time != null){
-                     %>
-             
-                    <div data-alert class="alert-box success radius">Vital signs updated successfully!
-                        <a href="#" class="close">&times;</a>
-                        </div>
+                } else if (first_time != null) {
+                %>
+
+                <div data-alert class="alert-box success radius">Vital signs updated successfully!
+                    <a href="#" class="close">&times;</a>
+                </div>
                 <%
                     }
                 %>
@@ -259,24 +256,24 @@
                         } else {
                             out.println("content");
                         } %>" id="vital">
-                                          <form action="processVitalSign.jsp">
-                        <table border = "0">   
-                            <tr><td></td>
-                                <% String dateTime = null;
-                                    
-                                    dateTime = (String) session.getAttribute("dateTime");
-                                %>
-                                <td style="width:270px;"><b>Last Updated :<br><% if (dateTime == null) {
-                                        out.println("2014/10/08 16:35:21");
-                                    } else {
-                                        out.println(dateTime);
-                                    }%> </b></td> 
+                        <form action="processVitalSign.jsp">
+                            <table border = "0">   
+                                <tr><td></td>
+                                    <% String dateTime = null;
 
-                                <td><b>Current</b></td>
-                            </tr> 
-                                    
-                           
-                               
+                                        dateTime = (String) session.getAttribute("dateTime");
+                                    %>
+                                    <td style="width:270px;"><b>Last Updated :<br><% if (dateTime == null) {
+                                            out.println("2014/10/08 16:35:21");
+                                        } else {
+                                            out.println(dateTime);
+                                        }%> </b></td> 
+
+                                    <td><b>Current</b></td>
+                                </tr> 
+
+
+
                                 <%
                                     String temp = "37.0";
                                     String rr = "20";
@@ -370,16 +367,15 @@
                                         }
                                     }
 
-                                   
                                     if (firstTime.equals("false")) {
-                               
-                                            session.setAttribute("first", "true");
-                                            session.removeAttribute("first");
-                                        }
-                                    
+
+                                        session.setAttribute("first", "true");
+                                        session.removeAttribute("first");
+                                    }
+
                                 %>
-                                
-                                
+
+
                                 <tr><td><b>Temperature (ºC)</b> <a href="#" data-reveal-id="chart"> View Chart</a></td>
                                     <td><%=temp%></td>
                                     <td><input type="text" name ="temperature" style="width:250px" value= "<% if (check == true) {
@@ -429,7 +425,7 @@
                                         } else {
                                             out.println("");
                                         }%>" required/></td></tr>
-                                   
+
                                 <%
                                     session.removeAttribute("vital");
                                     session.removeAttribute("tempError");
@@ -440,9 +436,9 @@
                                     session.removeAttribute("active");
 
                                 %>
-                        </table>
+                            </table>
 
-                        <input type="Submit" value="Update Vitals" class="button"> 
+                            <input type="Submit" value="Update Vitals" class="button"> 
                         </form>
                     </div>
 
@@ -556,20 +552,14 @@
                                 </p>
 
                                 <% //if (errorMsg != null || successMsg != null) {
-                                        session.removeAttribute("successMsg");
-                                        session.removeAttribute("errorMsg");
-                                        session.removeAttribute("active");
-                                   // }
+                                    session.removeAttribute("successMsg");
+                                    session.removeAttribute("errorMsg");
+                                    session.removeAttribute("active");
+                                    // }
 
                                 %>
                             </div>
-
-
-
                         </form>
-
-
-
                     </div>
 
                     <div class="<% if (active != null && active.equals(
@@ -644,7 +634,7 @@
                                         <p>Tutorial Group: <%=tutorialGrp%></p>
                                         <p>Group Names: <%=grpNames%></p>
                                             <p>Time Submitted: <%DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                                                Date date = new Date();%> <%=date%> </p>
+                                            Date date = new Date();%> <%=date%> </p>
                                         <p><%=notes%></p>
                                     </div>
                                     <%
@@ -655,49 +645,32 @@
 
                                 </div>
                             </div>
-
-
-
                             <!--<input type="button" value="Cancel" class="button" onClick="window.location = 'viewPatientInformation.jsp'"/>-->
                         </form>
                         </p>
                     </div>
-            
+
                 </div>
             </div>
         </div>
-                                    
-        <div id="chart" class="reveal-modal" data-reveal>
-            <h1>Historical Temperature Chart</h1>    
-            <div id="graphdiv"></div>
-            <script type="text/javascript">
-               g = new Dygraph(
 
-                document.getElementById("graphdiv"),
+        <div id="chart" class="reveal-modal medium" data-reveal>
 
-                "Date,Temperature\n" +
-                "2008-05-07,75\n" +
-                "2008-05-08,70\n" +
-                "2008-05-09,80\n"
-
-              );
-             </script>  
-             
-        <a class="close-reveal-modal">&#215;</a>
+            <h1>Historical Temperature Chart</h1>
+                <iframe src = "tempChart.jsp" frameborder ="0" width = "600" height = "350"></iframe> 
+            <a class="close-reveal-modal">&#215;</a>
 
         </div>
-        
-          
+
         <script src="js/vendor/jquery.js"></script>
         <script src="js/foundation.min.js"></script> 
-        
-        
+
         <script src='static/libs/dygraph/dygraph-combined.js'></script>	
-       <script>
-       $(document).ready(function () {
-                $(document).foundation();
-            });
-    </script>
+        <script>
+                    $(document).ready(function() {
+                        $(document).foundation();
+                    });
+        </script>
     </body>
-      
+
 </html>
