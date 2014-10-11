@@ -18,15 +18,22 @@
 <html>
     <script src="js/foundation.min.js"></script>
     <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/modernizr.js"></script>
+   
+    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="css/foundation.css" />
+        <script type="text/javascript" src="js/dygraph-combined.js"></script>                         
+           
         <title>Patient Information</title>
         <%@include file="topbar.jsp"%>
+         
     </head>
 
     <body>
         <script src="js/foundation.min.js"></script>
+                
         <br>
         <%            String active = active = (String) session.getAttribute("active");
 
@@ -252,8 +259,7 @@
                         } else {
                             out.println("content");
                         } %>" id="vital">
-
-                      <form action="processVitalSign.jsp">
+                                          <form action="processVitalSign.jsp">
                         <table border = "0">   
                             <tr><td></td>
                                 <% String dateTime = null;
@@ -372,7 +378,9 @@
                                         }
                                     
                                 %>
-                                <tr><td><b>Temperature (ºC)</b></td>
+                                
+                                
+                                <tr><td><b>Temperature (ºC)</b> <a href="#" data-reveal-id="chart"> View Chart</a></td>
                                     <td><%=temp%></td>
                                     <td><input type="text" name ="temperature" style="width:250px" value= "<% if (check == true) {
                                             out.println(temp2);
@@ -436,7 +444,6 @@
 
                         <input type="Submit" value="Update Vitals" class="button"> 
                         </form>
-
                     </div>
 
                     <div class="<% if (active != null && active.equals(
@@ -655,12 +662,42 @@
                         </form>
                         </p>
                     </div>
+            
                 </div>
             </div>
         </div>
-    </body>
-    <script>
-        $(document).foundation();
+                                    
+        <div id="chart" class="reveal-modal" data-reveal>
+            <h1>Historical Temperature Chart</h1>    
+            <div id="graphdiv"></div>
+            <script type="text/javascript">
+               g = new Dygraph(
 
+                document.getElementById("graphdiv"),
+
+                "Date,Temperature\n" +
+                "2008-05-07,75\n" +
+                "2008-05-08,70\n" +
+                "2008-05-09,80\n"
+
+              );
+             </script>  
+             
+        <a class="close-reveal-modal">&#215;</a>
+
+        </div>
+        
+          
+        <script src="js/vendor/jquery.js"></script>
+        <script src="js/foundation.min.js"></script> 
+        
+        
+        <script src='static/libs/dygraph/dygraph-combined.js'></script>	
+       <script>
+       $(document).ready(function () {
+                $(document).foundation();
+            });
     </script>
+    </body>
+      
 </html>
