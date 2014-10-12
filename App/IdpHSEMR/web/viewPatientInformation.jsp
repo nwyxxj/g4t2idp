@@ -523,7 +523,7 @@
                                     <div class="medium-12 columns">
                                         <label for="patientBarcode" class="left inline"><h3><b>Step 1: Scan Patient's Barcode </b></h3>
                                             <div class="small-9 columns">
-                                                <input type ="text" id="patientBarcode" class="error" name="patientBarcode" required>
+                                                <input type ="text" id="patientBarcode" name="patientBarcode" required>
                                             </div>
                                         </label>
                                     </div>      
