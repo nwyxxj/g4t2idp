@@ -82,6 +82,7 @@
     } else {
         session.setAttribute("active", "reports");
        session.setAttribute("updated", null);
+       session.setAttribute("reportError", "No report(s) selected for retrieval.");
         
         response.sendRedirect("viewPatientInformation.jsp");
     }

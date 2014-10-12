@@ -18,10 +18,17 @@
 
                 document.getElementById("graphdiv"),
 
-                "Date,Temperature\n" +
-                "2008-05-07,75\n" +
-                "2008-05-08,70\n" +
-                "2008-05-09,80\n"
+                "Time,Temperature\n" +
+                "0800,36.8\n" +
+                "1000,37.0\n" +
+                "1200,37.3\n" + 
+                "1400,37.2\n" +
+                "1600,37.0\n" + 
+                "1800,36.9\n" + 
+                "2000,36.7\n", { title: 'Temperature Chart',
+              titleHeight: 32,
+              ylabel: 'Temperature (ºC)',
+              xlabel: 'Time'}  
 
               );
              </script>  
