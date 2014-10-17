@@ -25,7 +25,7 @@
         <link rel="stylesheet" href="css/foundation.css" />
         <script type="text/javascript" src="js/dygraph-combined.js"></script>  
         <script type="text/javascript" src="validation.js"></script>
-        
+
         <script>
             $(document).ready(function() {
                 $(document).foundation();
@@ -71,15 +71,15 @@
                     } else {
                         out.println("");
                     }
-                   String reportError = (String) session.getAttribute("reportError");
+                    String reportError = (String) session.getAttribute("reportError");
                     if (reportError != null && !reportError.equals("")) {
-                        %>
-                        <div data-alert class="alert-box alert radius">
-                            <%=reportError%>
+                %>
+                <div data-alert class="alert-box alert radius">
+                    <%=reportError%>
                     <a href="#" class="close">&times;</a>
                 </div>
-                    <%
-                      }
+                <%
+                    }
                     session.setAttribute("reportError", null);
 
                     //check for success message                   
@@ -98,13 +98,15 @@
                     String successMsg = (String) session.getAttribute("successMsg");
                     String errorMsg = errorMsg = (String) session.getAttribute("errorMsg");
                     if (errorMsg == null && successMsg != null) {
+                         session.removeAttribute("patientBarcode");
                 %>
                 <div data-alert class="alert-box success radius">
                     Patient administered successfully!
                     <a href="#" class="close">&times;</a>
                 </div>
                 <%
-                    } session.setAttribute("successMsg", null);
+                    }
+                    session.setAttribute("successMsg", null);
 
                     if (errorMsg != null && !errorMsg.equals("")) {
                 %>
@@ -113,7 +115,8 @@
                     <a href="#" class="close">&times;</a>
                 </div>
                 <%
-                    } session.setAttribute("errorMsg", null);
+                    }
+                    session.setAttribute("errorMsg", null);
 
                 %>
 
@@ -236,7 +239,7 @@
                                 <h3><b>Existing Report</b></h3>
                                 <table>
                                     <tr>
-                                        <td>Report Name</td>
+                                        <td>Report File</td>
                                         <td>Report Retrieved On</td>
                                     </tr>
                                     <%
@@ -247,7 +250,7 @@
                                             String path = "reports/" + fileName;
                                     %>
                                     <tr>
-                                        <td><a href="<%=path%>"><%=fileName%></a></td>
+                                        <td><a href="<%=path%>" target="_blank"><%=fileName%></a></td>
                                         <td><%=reportsRetrieved.get(fileName)%></td>
                                     </tr>            
 
@@ -400,83 +403,83 @@
                                         <tr><td><b>Temperature</b> <span class="label"><a href="#" data-reveal-id="chart"  style="color:white"> View Chart</a></span></td>
                                             <td><%=temp%> ºC</td>
                                             <td>
-                                            <div class="row">
-                                                <div class="small-4 columns">
-                                                    <input type="text" name ="temperature" style="width:200px" value= "<% if (check == true) {
-                                                            out.println(temp2);
-                                                        } else {
-                                                            out.println("");
-                                                        }%>" required />
+                                                <div class="row">
+                                                    <div class="small-4 columns">
+                                                        <input type="text" name ="temperature" style="width:200px" value= "<% if (check == true) {
+                                                                out.println(temp2);
+                                                            } else {
+                                                                out.println("");
+                                                            }%>" required />
 
+                                                    </div>
+                                                    <div class="small-4 columns">
+                                                        <label for="right-label" class="left inline">ºC</label>
+                                                    </div>
                                                 </div>
-                                                <div class="small-4 columns">
-                                                    <label for="right-label" class="left inline">ºC</label>
-                                                </div>
-                                            </div>
-                                              </td></tr> 
+                                            </td></tr> 
                                         <tr><td><b>Respiratory Rate</b></td>
                                             <td><%=rr%> breaths/min</td>
                                             <td>
                                                 <div class="row">
-                                                <div class="small-4 columns">
-                                                    <input type="text" name ="RR" style="width:200px" value= "<% if (check == true) {
-                                                            out.println(rr2);
-                                                        } else {
-                                                            out.println("");
-                                                        }%>" required />
+                                                    <div class="small-4 columns">
+                                                        <input type="text" name ="RR" style="width:200px" value= "<% if (check == true) {
+                                                                out.println(rr2);
+                                                            } else {
+                                                                out.println("");
+                                                            }%>" required />
 
+                                                    </div>
+                                                    <div class="small-4 columns">
+                                                        <label for="right-label" class="left inline">breaths/min</label>
+                                                    </div>
                                                 </div>
-                                                <div class="small-4 columns">
-                                                    <label for="right-label" class="left inline">breaths/min</label>
-                                                </div>
-                                            </div>
                                         <tr><td>
-                                                
+
                                                 <b>Heart Rate </b></td>
                                             <td><%=hr%> beats/min</td>
                                             <td>     <div class="row">
-                                                <div class="small-4 columns">
-                                                    <input type="text" name ="HR" style="width:200px" value= "<% if (check == true) {
-                                                            out.println(hr2);
-                                                        } else {
-                                                            out.println("");
-                                                        }%>" required />
+                                                    <div class="small-4 columns">
+                                                        <input type="text" name ="HR" style="width:200px" value= "<% if (check == true) {
+                                                                out.println(hr2);
+                                                            } else {
+                                                                out.println("");
+                                                            }%>" required />
 
-                                                </div>
-                                                <div class="small-4 columns">
-                                                    <label for="right-label" class="left inline">beats/min</label>
-                                                </div>
-                                            </div></td></tr>
+                                                    </div>
+                                                    <div class="small-4 columns">
+                                                        <label for="right-label" class="left inline">beats/min</label>
+                                                    </div>
+                                                </div></td></tr>
                                         <tr><td><b>Blood Pressure</b></td>
                                             <td><%=bp%> mm/Hg</td>
                                             <td><div class="row">
-                                                <div class="small-4 columns">
-                                                    <input type="text" name ="BP" style="width:200px" value= "<% if (check == true) {
-                                                            out.println(bp2);
-                                                        } else {
-                                                            out.println("");
-                                                        }%>" required />
+                                                    <div class="small-4 columns">
+                                                        <input type="text" name ="BP" style="width:200px" value= "<% if (check == true) {
+                                                                out.println(bp2);
+                                                            } else {
+                                                                out.println("");
+                                                            }%>" required />
 
-                                                </div>
-                                                <div class="small-4 columns">
-                                                    <label for="right-label" class="left inline">mm/Hg</label>
-                                                </div>
-                                            </div> </td></tr>
+                                                    </div>
+                                                    <div class="small-4 columns">
+                                                        <label for="right-label" class="left inline">mm/Hg</label>
+                                                    </div>
+                                                </div> </td></tr>
                                         <tr><td><b>SPO</b></td>
                                             <td><%=spo%> % with O<sub>2</sub></td>
                                             <td><div class="row">
-                                                <div class="small-4 columns">
-                                                    <input type="text" name ="SPO" style="width:200px" value= "<% if (check == true) {
-                                                            out.println(spo2);
-                                                        } else {
-                                                            out.println("");
-                                                        }%>" required />
+                                                    <div class="small-4 columns">
+                                                        <input type="text" name ="SPO" style="width:200px" value= "<% if (check == true) {
+                                                                out.println(spo2);
+                                                            } else {
+                                                                out.println("");
+                                                            }%>" required />
 
-                                                </div>
-                                                <div class="small-4 columns">
-                                                    <label for="right-label" class="left inline">% with O<sub>2</sub></label>
-                                                </div>
-                                            </div></td></tr>
+                                                    </div>
+                                                    <div class="small-4 columns">
+                                                        <label for="right-label" class="left inline">% with O<sub>2</sub></label>
+                                                    </div>
+                                                </div></td></tr>
                                         <tr><td><b>Intake</b></td>
                                             <td><%=intake%></td>
                                             <td><input type="text" name ="intake" style="width:200px"  value="<% if (check == true) {
@@ -517,138 +520,206 @@
                             out.println("content");
                         } %>" id="medication">
 
-                        <form id='myform' action="processMedication.jsp">
+                        <form id='myform' action="processPatient.jsp">
                             <div class="content" id="medication">                     
                                 <div class="row">
                                     <div class="medium-12 columns">
                                         <label for="patientBarcode" class="left inline"><h3><b>Step 1: Scan Patient's Barcode </b></h3>
-                                            <div class="small-9 columns">
-                                                <input type ="text" id="patientBarcode" name="patientBarcode" required>
+                                            <div class="small-12 columns">
+                                                <%
+                                                    String patientBarcode = (String) session.getAttribute("patientBarcode");
+                                                    if (patientBarcode != null) {
+                                                        if (patientBarcode.equals("S1234567J")) {
+                                                %>
+
+                                                    <div class="row">
+                                                        <div class="small-9">
+                                                            <div class="row">
+                                                                 <div class="small-8 columns">
+                                                                    <input type ="text" id="patientBarcode" name="patientBarcode" value="<%=patientBarcode%>" readonly>
+                                                                </div>
+                                                                
+                                                                <div class="small-4 columns">
+                                                                    <label for="right-label" class="left inline"><font color="green"> ✓</font></label><br>
+                                                                    <!--<label for="right-label" class="right inline">Label</label>-->
+                                                                </div>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                <% } else {%>
+                                                <font color="red"> Please enter the right patient barcode</font><br>
+                                                <div class="row">
+                                                        <div class="small-9">
+                                                            <div class="row">
+                                                                 <div class="small-8 columns">
+                                                                    <input type ="text" id="patientBarcode" name="patientBarcode" value="<%=patientBarcode%>" readonly> 
+                                                                </div>
+                                                                
+                                                                <div class="small-4 columns">
+                                                                    <label for="right-label" class="left inline"><input type="submit" value="Scan barcode"></label><br>
+                                                                    <!--<label for="right-label" class="right inline">Label</label>-->
+                                                                </div>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                
+                                                <%
+                                                    }
+                                                } else {
+                                                %>
+                                                <div class="row">
+                                                        <div class="small-9">
+                                                            <div class="row">
+                                                                 <div class="small-8 columns">
+                                                                    <input type ="text" id="patientBarcode" name="patientBarcode"> 
+                                                                </div>
+                                                                
+                                                                <div class="small-4 columns">
+                                                                    <label for="right-label" class="left inline"><input type="submit" value="Scan barcode"></label><br>
+                                                                    <!--<label for="right-label" class="right inline">Label</label>-->
+                                                                </div>
+                                                               
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <%
+                                                    }
+
+                                                %>
+                                                <input type="hidden" name="barcode1" value="S9037482H">
+                                                <input type="hidden" name="barcode2" value="S1234567J">
                                             </div>
                                         </label>
                                     </div>      
                                 </div>
-                                <div class="row">
-                                    <div class="medium-12 columns">
-                                        <label for="med1" class="left inline" align="left">
-                                            <h3><b>Step 2: Scan Medicine Barcode </b></h3>
+                            </div> 
+                        </form>
+                        <form action="processMedication.jsp">
+                            <div class="row">
+                                <div class="medium-12 columns">
+                                    <label for="med1" class="left inline" align="left">
+                                        <h3><b>Step 2: Scan Medicine Barcode </b></h3>
 
-                                            <div class="medium-12 columns" >
-                                                <table>      
-                                                    <tr>
+                                        <div class="medium-12 columns" >
+                                            <table>      
+                                                <tr>
 
-                                                        <td>
-                                                            <label for="med1"><b>Medicine Barcode </b></label>
-                                                        </td>
-                                                        <td>
-                                                            <label for="medicineName"><b>Medication Name </b></label>
-                                                        </td>
-                                                        <td>
-                                                            <label for="route"><b>Route</b></label>
-                                                        </td>
-                                                        <td>
-                                                            <label for="dosage"><b>Dosage </b></label>
-                                                        </td>
-                                                        <td>
-                                                            <label for="frequency"><b>Frequency </b></label>
-                                                        </td>
-                                                        <td>
-                                                            <label for="doctorName"><b>Doctor Name</b> </label>
-                                                        </td>
-                                                        <td>
-                                                            <label for="location"><b>Location </b></label>
-                                                        </td>
-                                                        <td>
-                                                            <label for="lastAdministered"><b>Last Administered</b></label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type ="text" id="med1" name="med1" required>
-                                                        </td>
-                                                        <td>
-                                                            Epinephrine
-                                                        </td>
-                                                        <td>
-                                                            P.O
-                                                        </td>
-                                                        <td>
-                                                            200ml
-                                                        </td>
-                                                        <td>
-                                                            Q.AM
-                                                        </td>
-                                                        <td>
-                                                            James
-                                                        </td>
-                                                        <td>
-                                                            Row: A<br/>
-                                                            Column: 2
-                                                        </td>
-                                                        <td>
-                                                            <% String lastDate = null;
+                                                    <td>
+                                                        <label for="med1"><b>Medicine Barcode </b></label>
+                                                    </td>
+                                                    <td>
+                                                        <label for="medicineName"><b>Medication Name </b></label>
+                                                    </td>
+                                                    <td>
+                                                        <label for="route"><b>Route</b></label>
+                                                    </td>
+                                                    <td>
+                                                        <label for="dosage"><b>Dosage </b></label>
+                                                    </td>
+                                                    <td>
+                                                        <label for="frequency"><b>Frequency </b></label>
+                                                    </td>
+                                                    <td>
+                                                        <label for="doctorName"><b>Doctor Name</b> </label>
+                                                    </td>
+                                                    <td>
+                                                        <label for="location"><b>Location </b></label>
+                                                    </td>
+                                                    <td>
+                                                        <label for="lastAdministered"><b>Last Administered</b></label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input type ="text" id="med1" name="med1">
+                                                    </td>
+                                                    <td>
+                                                        Epinephrine
+                                                    </td>
+                                                    <td>
+                                                        P.O
+                                                    </td>
+                                                    <td>
+                                                        200ml
+                                                    </td>
+                                                    <td>
+                                                        Q.AM
+                                                    </td>
+                                                    <td>
+                                                        James
+                                                    </td>
+                                                    <td>
+                                                        Row: A<br/>
+                                                        Column: 2
+                                                    </td>
+                                                    <td>
+                                                        <% String lastDate = null;
 
-                                                lastDate = (String) session.getAttribute("lastDate");
-                                             if (lastDate == null) {
-                                                    out.println("2014/10/12 10:35:21");
-                                                } else {
-                                                    out.println(lastDate);
-                                                }%>                               
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type ="text" id="med2" name="med2" required>
-                                                        </td>
-                                                        <td>
-                                                            Olanzapine
-                                                        </td>
-                                                        <td>
-                                                            P.O
-                                                        </td>
-                                                        <td>
-                                                            2 Tablet
-                                                        </td>
-                                                        <td>
-                                                            Q.AM
-                                                        </td>
-                                                        <td>
-                                                            James
-                                                        </td>
-                                                        <td>
-                                                            Row: A<br/>
-                                                            Column: 2
-                                                        </td>
-                                                        <td>
-                                                             <% 
-                                             if (lastDate == null) {
-                                                    out.println("2014/10/12 10:35:21");
-                                                } else {
-                                                    out.println(lastDate);
-                                                }%>                                             
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div></label>
-                                        <p>
-                                            <input type="submit" class="tiny button" value="Administer">
+                                                            lastDate = (String) session.getAttribute("lastDate");
+                                                            if (lastDate == null) {
+                                                                out.println("2014/10/12 10:35:21");
+                                                                } else {
+                                                                    out.println(lastDate);
+                                                                }%>                               
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input type ="text" id="med2" name="med2">
+                                                    </td>
+                                                    <td>
+                                                        Olanzapine
+                                                    </td>
+                                                    <td>
+                                                        P.O
+                                                    </td>
+                                                    <td>
+                                                        2 Tablet
+                                                    </td>
+                                                    <td>
+                                                        Q.AM
+                                                    </td>
+                                                    <td>
+                                                        James
+                                                    </td>
+                                                    <td>
+                                                        Row: A<br/>
+                                                        Column: 2
+                                                    </td>
+                                                    <td>
+                                                        <%
+                                                            if (lastDate == null) {
+                                                                out.println("2014/10/12 10:35:21");
+                                                                 } else {
+                                                                     out.println(lastDate);
+                                                                 }%>                                             
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div></label>
+                                    <p>
+                                        <input type="submit" class="tiny button" value="Administer">
 
-                                        </p>
+                                    </p>
 
-                                        <% //if (errorMsg != null || successMsg != null) {
-                                            session.removeAttribute("successMsg");
-                                            session.removeAttribute("errorMsg");
-                                            session.removeAttribute("active");
-                                            // }
+                                    <% //if (errorMsg != null || successMsg != null) {
+                                        session.removeAttribute("successMsg");
+                                        session.removeAttribute("errorMsg");
+                                        session.removeAttribute("active");
+                                        // }
 
-                                        %>
+                                    %>
 
-                                    </div>
                                 </div>
                             </div>
-                        </form>
-
+                        </form>    
                     </div>
+
+
 
 
                     <div class="<% if (active != null && active.equals(
@@ -699,7 +770,7 @@
                                         <div class="small-9 columns">
                                             <input type ="text" id= "tutorialGrp" name="tutorialGrp" value = "<%=tutorialGrp%>" required>
                                             <input type ="text" id= "grpNames" name="grpNames" value = "<%=grpNames%>" required>
-                                            <input type ="text" id= "notes" name="notes" value = "<%=notes%>" required>
+                                            <input type ="text" id= "notes" style="height:200px" name="notes" value = "<%=notes%>" required>
                                         </div>
                                     </div>
                                     <input type="Submit" name = "save" value="Save" class="tiny button"> 
@@ -722,7 +793,7 @@
                                         <h5>Previous Multidisciplinary Notes</h5>
                                         <p>Tutorial Group: <%=tutorialGrp%></p>
                                         <p>Group Names: <%=grpNames%></p>
-                                            <p>Time Submitted: <%DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                                        <p>Time Submitted: <%DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                                                 Date date = new Date();%> <%=date%> </p>
                                         <p><%=notes%></p>
                                     </div>
@@ -750,13 +821,13 @@
 
         </div>
 
-        
+
     </body> 
     <script>
             $(document).ready(function() {
                 $(document).foundation();
             });
-            
-      
-        </script>
+
+
+    </script>
 </html>

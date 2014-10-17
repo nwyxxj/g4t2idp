@@ -18,17 +18,20 @@
     <body>
          <%
 
-            String patientBarcode = request.getParameter("patientBarcode");
             String med1 = request.getParameter("med1");
             String med2 = request.getParameter("med2");
+            String patientBarcode = (String) session.getAttribute("patientBarcode");
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
-             if (patientBarcode != null && !patientBarcode.equals("Q1W2E3")) {
-                session.setAttribute("errorMsg", "Please scan the right patient barcode!");
-            } else if (med1 != null && !med1.equals("Q111")){
-                session.setAttribute("errorMsg", "Please scan the right medicine barcode!");
-            } else if (med1 != null && !med2.equals("Q222")){
-                session.setAttribute("errorMsg", "Please scan the right medicine barcode!");
+            if(patientBarcode == null) {
+               session.setAttribute("errorMsg", "Please scan patient barcode first!"); 
+            } else if (!patientBarcode.equals("S1234567J")){
+                session.setAttribute("errorMsg", "Please scan the right patient barcode!"); 
+            } else if (med1 == null || med2 == null){
+                session.setAttribute("errorMsg", "Please scan medicine barcode first!");  
+            //} else if (med1 != null && !med1.equals("Q111")){
+              //  session.setAttribute("errorMsg", "Please scan the right medicine barcode!");
+            //} else if (med1 != null && !med2.equals("Q222")){
+              //  session.setAttribute("errorMsg", "Please scan the right medicine barcode!");
             }else {
                 session.setAttribute("successMsg", "Medicine administered");
                 session.setAttribute("lastDate", dateFormat.format(new Date()));
