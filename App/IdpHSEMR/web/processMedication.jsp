@@ -26,8 +26,8 @@
                session.setAttribute("errorMsg", "Please scan patient barcode first!"); 
             } else if (!patientBarcode.equals("S1234567J")){
                 session.setAttribute("errorMsg", "Please scan the right patient barcode!"); 
-            } else if (med1 == null || med2 == null){
-                session.setAttribute("errorMsg", "Please scan medicine barcode first!");  
+            } else if (med1.equals("") && med2.equals("")){
+                session.setAttribute("errorMsg", "Please enter medicine id first!");  
             //} else if (med1 != null && !med1.equals("Q111")){
               //  session.setAttribute("errorMsg", "Please scan the right medicine barcode!");
             //} else if (med1 != null && !med2.equals("Q222")){

@@ -602,14 +602,14 @@
                             <div class="row">
                                 <div class="medium-12 columns">
                                     <label for="med1" class="left inline" align="left">
-                                        <h3><b>Step 2: Scan Medicine Barcode </b></h3>
+                                        <h3><b>Step 2: Enter Medicine ID </b></h3>
 
                                         <div class="medium-12 columns" >
                                             <table>      
                                                 <tr>
 
                                                     <td>
-                                                        <label for="med1"><b>Medicine Barcode </b></label>
+                                                        <label for="med1"><b>Medicine ID </b></label>
                                                     </td>
                                                     <td>
                                                         <label for="medicineName"><b>Medication Name </b></label>
@@ -770,7 +770,7 @@
                                         <div class="small-9 columns">
                                             <input type ="text" id= "tutorialGrp" name="tutorialGrp" value = "<%=tutorialGrp%>" required>
                                             <input type ="text" id= "grpNames" name="grpNames" value = "<%=grpNames%>" required>
-                                            <input type ="text" id= "notes" style="height:200px" name="notes" value = "<%=notes%>" required>
+                                            <textarea rows="4" cols="30" name="notes" required><%=notes%></textarea>
                                         </div>
                                     </div>
                                     <input type="Submit" name = "save" value="Save" class="tiny button"> 
