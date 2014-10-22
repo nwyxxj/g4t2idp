@@ -28,11 +28,13 @@
                 session.setAttribute("errorMsg", "Please scan the right patient barcode!"); 
             } else if (med1.equals("") && med2.equals("")){
                 session.setAttribute("errorMsg", "Please enter medicine id first!");  
-            //} else if (med1 != null && !med1.equals("Q111")){
-              //  session.setAttribute("errorMsg", "Please scan the right medicine barcode!");
-            //} else if (med1 != null && !med2.equals("Q222")){
-              //  session.setAttribute("errorMsg", "Please scan the right medicine barcode!");
-            }else {
+            } else if (!med1.equals("") && !med2.equals("")){
+                if (med1 != null && !med1.equals("Q111")){
+                session.setAttribute("errorMsg", "Please scan the right medicine barcode!");
+                 } else if (med2 != null && !med2.equals("Q222")){
+                    session.setAttribute("errorMsg", "Please scan the right medicine barcode!");
+                 }
+            } else {
                 session.setAttribute("successMsg", "Medicine administered");
                 session.setAttribute("lastDate", dateFormat.format(new Date()));
             }

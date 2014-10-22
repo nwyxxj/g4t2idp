@@ -129,7 +129,7 @@
                     if (tempError != null) {
                 %>
                 <div data-alert class="alert-box alert radius"> 
-                    Temperature- Please enter a valid Temp. e.g) 0.00-100.00ºC.
+                    Temperature- Please enter a valid Temp. e.g) 30.00-50.00ºC.
                     <a href="#" class="close">&times;</a>
                 </div>
                 <%
@@ -303,7 +303,7 @@
                                             String rr = "20";
                                             String hr = "108";
                                             String bp = "88/55";
-                                            String spo = "92%";
+                                            String spo = "92";
                                             String intake = "fruits";
                                             String output = "50";
                                             String tempErrorMsg = "";
