@@ -277,7 +277,7 @@
                         } %>" id="vital">
                         <div class="row">
                             <div class="large-centered medium-10 columns">
-                                <form action="processVitalSign.jsp">
+                                <form data-abide action="processVitalSign.jsp">
                                     <table border = "0">   
                                         <col width="25%">
                                         <col width="30%">
@@ -404,92 +404,65 @@
                                             <td><%=temp%> ºC</td>
                                             <td>
                                                 <div class="row">
-                                                    <div class="small-4 columns">
-                                                        <input type="text" name ="temperature" style="width:200px" value= "<% if (check == true) {
-                                                                out.println(temp2);
-                                                            } else {
-                                                                out.println("");
-                                                            }%>" required />
-
+                                                    <div class="small-4 columns" style = "width:200px">
+                                                        <input type="text" name ="temperature" maxlength="4" pattern ="[0-9]+(\.[0-9][0-9]?)?" />
+                                                        <small class="error">Must be numeric, cannot contain alphabets. E.g: 37.3 or 37</small>
                                                     </div>
-                                                    <div class="small-4 columns">
-                                                        <label for="right-label" class="left inline">ºC</label>
-                                                    </div>
+                                                    <label for="right-label" class="left inline">ºC</label>
                                                 </div>
                                             </td></tr> 
                                         <tr><td><b>Respiratory Rate</b></td>
                                             <td><%=rr%> breaths/min</td>
                                             <td>
                                                 <div class="row">
-                                                    <div class="small-4 columns">
-                                                        <input type="text" name ="RR" style="width:200px" value= "<% if (check == true) {
-                                                                out.println(rr2);
-                                                            } else {
-                                                                out.println("");
-                                                            }%>" required />
-
+                                                    <div class="small-4 columns" style = "width:200px">
+                                                        <input type="text" name ="RR" maxlength="2" pattern ="integer"/>
+                                                        <small class="error">RR must be 2 digits.</small>
                                                     </div>
-                                                    <div class="small-4 columns">
-                                                        <label for="right-label" class="left inline">breaths/min</label>
-                                                    </div>
+                                                    <label for="right-label" class="left inline">breaths/min</label>
                                                 </div>
-                                        <tr><td>
-
-                                                <b>Heart Rate </b></td>
+                                        <tr><td><b>Heart Rate </b></td>
                                             <td><%=hr%> beats/min</td>
-                                            <td>     <div class="row">
-                                                    <div class="small-4 columns">
-                                                        <input type="text" name ="HR" style="width:200px" value= "<% if (check == true) {
-                                                                out.println(hr2);
-                                                            } else {
-                                                                out.println("");
-                                                            }%>" required />
-
+                                            <td><div class="row">
+                                                    <div class="small-4 columns" style = "width:200px">
+                                                        <input type="text" name ="HR" maxlength ="3" pattern ="^([0-9]|[1-9][0-9]|[1][0-9][0-9]|20[0-0])$"/>
+                                                        <small class="error">HR must be between 0 - 200.</small>
                                                     </div>
-                                                    <div class="small-4 columns">
-                                                        <label for="right-label" class="left inline">beats/min</label>
-                                                    </div>
+                                                    <label for="right-label" class="left inline">beats/min</label>
                                                 </div></td></tr>
                                         <tr><td><b>Blood Pressure</b></td>
                                             <td><%=bp%> mm/Hg</td>
                                             <td><div class="row">
-                                                    <div class="small-4 columns">
-                                                        <input type="text" name ="BP" style="width:200px" value= "<% if (check == true) {
+                                                    <div class="small-4 columns"  style = "width:200px">
+                                                        <input type="text" name ="BP" value= "<% if (check == true) {
                                                                 out.println(bp2);
                                                             } else {
                                                                 out.println("");
                                                             }%>" required />
-
                                                     </div>
-                                                    <div class="small-4 columns">
+                                                   
                                                         <label for="right-label" class="left inline">mm/Hg</label>
-                                                    </div>
+                                                    
                                                 </div> </td></tr>
                                         <tr><td><b>SPO</b></td>
-                                            <td><%=spo%> % with O<sub>2</sub></td>
+                                            <td><%=spo%> with O<sub>2</sub></td>
                                             <td><div class="row">
-                                                    <div class="small-4 columns">
-                                                        <input type="text" name ="SPO" style="width:200px" value= "<% if (check == true) {
-                                                                out.println(spo2);
-                                                            } else {
-                                                                out.println("");
-                                                            }%>" required />
-
+                                                    <div class="small-4 columns" style = "width:200px">
+                                                        <input type="text" name ="SPO" maxlength = "3" pattern ="^[0-9][0-9]?$|^100$"/>
+                                                        <small class="error">SPO must be numeric and between 0 - 100%.</small>
                                                     </div>
-                                                    <div class="small-4 columns">
-                                                        <label for="right-label" class="left inline">% with O<sub>2</sub></label>
-                                                    </div>
+                                                    <label for="right-label" class="left inline">% with O<sub>2</sub></label>
                                                 </div></td></tr>
                                         <tr><td><b>Intake</b></td>
                                             <td><%=intake%></td>
-                                            <td><input type="text" name ="intake" style="width:200px"  value="<% if (check == true) {
+                                            <td><input type="text" name ="intake" style="width:170px"  value="<% if (check == true) {
                                                     out.println(intake2);
                                                 } else {
                                                     out.println("");
                                                 }%>" required/></td></tr>
                                         <tr><td><b>Output</b></td>
                                             <td><%=output%></td>
-                                            <td><input type="text" name ="output" style="width:200px" value="<% if (check == true) {
+                                            <td><input type="text" name ="output" style="width:170px" value="<% if (check == true) {
                                                     out.println(output2);
                                                 } else {
                                                     out.println("");
@@ -532,60 +505,60 @@
                                                         if (patientBarcode.equals("S1234567J")) {
                                                 %>
 
-                                                    <div class="row">
-                                                        <div class="small-9">
-                                                            <div class="row">
-                                                                 <div class="small-8 columns">
-                                                                    <input type ="text" id="patientBarcode" name="patientBarcode" value="<%=patientBarcode%>" readonly>
-                                                                </div>
-                                                                
-                                                                <div class="small-4 columns">
-                                                                    <label for="right-label" class="left inline"><font color="green"> ✓</font></label><br>
-                                                                    <!--<label for="right-label" class="right inline">Label</label>-->
-                                                                </div>
-                                                               
+                                                <div class="row">
+                                                    <div class="small-9">
+                                                        <div class="row">
+                                                            <div class="small-8 columns">
+                                                                <input type ="text" id="patientBarcode" name="patientBarcode" value="<%=patientBarcode%>" readonly>
                                                             </div>
+
+                                                            <div class="small-4 columns">
+                                                                <label for="right-label" class="left inline"><font color="green"> ✓</font></label><br>
+                                                                <!--<label for="right-label" class="right inline">Label</label>-->
+                                                            </div>
+
                                                         </div>
                                                     </div>
+                                                </div>
 
 
                                                 <% } else {%>
                                                 <font color="red"> Please enter the right patient barcode</font><br>
                                                 <div class="row">
-                                                        <div class="small-9">
-                                                            <div class="row">
-                                                                 <div class="small-8 columns">
-                                                                    <input type ="text" id="patientBarcode" name="patientBarcode" value="<%=patientBarcode%>" readonly> 
-                                                                </div>
-                                                                
-                                                                <div class="small-4 columns">
-                                                                    <label for="right-label" class="left inline"><input type="submit" value="Scan barcode"></label><br>
-                                                                    <!--<label for="right-label" class="right inline">Label</label>-->
-                                                                </div>
-                                                               
+                                                    <div class="small-9">
+                                                        <div class="row">
+                                                            <div class="small-8 columns">
+                                                                <input type ="text" id="patientBarcode" name="patientBarcode" value="<%=patientBarcode%>" readonly> 
                                                             </div>
+
+                                                            <div class="small-4 columns">
+                                                                <label for="right-label" class="left inline"><input type="submit" value="Scan barcode"></label><br>
+                                                                <!--<label for="right-label" class="right inline">Label</label>-->
+                                                            </div>
+
                                                         </div>
                                                     </div>
-                                                
+                                                </div>
+
                                                 <%
                                                     }
                                                 } else {
                                                 %>
                                                 <div class="row">
-                                                        <div class="small-9">
-                                                            <div class="row">
-                                                                 <div class="small-8 columns">
-                                                                    <input type ="text" id="patientBarcode" name="patientBarcode"> 
-                                                                </div>
-                                                                
-                                                                <div class="small-4 columns">
-                                                                    <label for="right-label" class="left inline"><input type="submit" value="Scan barcode"></label><br>
-                                                                    <!--<label for="right-label" class="right inline">Label</label>-->
-                                                                </div>
-                                                               
+                                                    <div class="small-9">
+                                                        <div class="row">
+                                                            <div class="small-8 columns">
+                                                                <input type ="text" id="patientBarcode" name="patientBarcode"> 
                                                             </div>
+
+                                                            <div class="small-4 columns">
+                                                                <label for="right-label" class="left inline"><input type="submit" value="Scan barcode"></label><br>
+                                                                <!--<label for="right-label" class="right inline">Label</label>-->
+                                                            </div>
+
                                                         </div>
                                                     </div>
+                                                </div>
                                                 <%
                                                     }
 
