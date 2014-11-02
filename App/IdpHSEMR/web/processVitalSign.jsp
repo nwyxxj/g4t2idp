@@ -4,6 +4,12 @@
     Author     : hpkhoo.2012
 --%>
 
+<%@page import="java.awt.List"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Collections.list(Enumeration)"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.io.FileOutputStream"%>
+<%@page import="java.io.PrintStream"%>
 <%@page import="au.com.bytecode.opencsv.CSVWriter"%>
 <%@page import="java.io.FileWriter"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -24,12 +30,7 @@
             boolean rrCheck = true;
             boolean hrCheck = true;
             boolean bpCheck= true;
-            CSVWriter writer = new CSVWriter(new FileWriter("yourfile.csv"), '\t');
-            // feed in your array (or convert your data to an array)
-            String[] entries = "first#second#third".split("#");
-            writer.writeNext(entries);
-            writer.close();
-         
+            
             //String checkThatItHasComeToThisPage = request.getParameter("check");
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             String temp = request.getParameter("temperature");
@@ -135,7 +136,23 @@
             
             if(bpCheck && hrCheck && rrCheck && tempCheck){
                 session.setAttribute("dateTime", dateFormat.format(new Date()));
-            }
+                CSVWriter writer = new CSVWriter(new FileWriter("temp.csv"), ',');
+           // feed in your array (or convert your data to an array)
+                String date = dateFormat.format(new Date());
+                String line = date + "#40#" + temp + "#35#\n";
+                String[] entries = line.split("#");
+                writer.writeNext(entries);
+                writer.close();
+//         
+//                try {
+//                    PrintStream writer = new PrintStream(
+//                        new FileOutputStream("temp.csv", true));
+//                    writer.println(date +",40," + temp + ",35\n");
+//                    writer.close();
+//                  } catch (IOException e) {
+//                    e.printStackTrace();
+                  }
+             
             session.setAttribute("active", "vital");
             
 //            RequestDispatcher rd = request.getRequestDispatcher("/viewPatientInformation.jsp");

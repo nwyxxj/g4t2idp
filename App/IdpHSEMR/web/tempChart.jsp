@@ -15,13 +15,7 @@
          <div id="graphdiv"></div>
             <script type="text/javascript">
                g = new Dygraph(
-                document.getElementById("graphdiv"),
-                [
-                [1,40,37,35],
-                [2,40,36,35],
-                [3,40,37.8,35],
-                [4,40,36.7,35]
-              ],
+                document.getElementById("graphdiv"), "temp.csv",
               {
                 labels: [ "X", "High","Patient", "Low" ],
                 title: 'Temperature Chart',
