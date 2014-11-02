@@ -548,11 +548,11 @@
                                                     <div class="small-9">
                                                         <div class="row">
                                                             <div class="small-8 columns">
-                                                                <input type ="text" id="patientBarcode" name="patientBarcode"> 
+                                                                <input type ="text" id="patientBarcode" name="patientBarcode" readonly> 
                                                             </div>
 
                                                             <div class="small-4 columns">
-                                                                <label for="right-label" class="left inline"><input type="submit" value="Scan barcode"></label><br>
+                                                                <label for="right-label" class="left inline"><input type="submit" class="tiny button" value="Scan patient barcode here!"></label><br>
                                                                 <!--<label for="right-label" class="right inline">Label</label>-->
                                                             </div>
 
@@ -578,7 +578,15 @@
                                         <h3><b>Step 2: Enter Medicine ID </b></h3>
 
                                         <div class="medium-12 columns" >
-                                            <table>      
+                                            <table> 
+                                                <col width="25%">
+                                                <col width="15%">
+                                                <col width="5%">
+                                                <col width="5%">
+                                                <col width="10%">
+                                                <col width="10%">
+                                                <col width="10%">
+                                                <col width="15%">
                                                 <tr>
 
                                                     <td>
@@ -607,9 +615,12 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                        <input type ="text" id="med1" name="med1">
-                                                    </td>
+                                                        <% if (patientBarcode != null && patientBarcode.equals("S1234567J")) {
+                                                        %>
+                                                        <td><input type ="text" id="med1" name="med1" ></td>
+                                                        <% } else {
+                                                        %><td><input type ="text" id="med1" name="med1" style='color:red; font-size:x-small' value="Please scan a valid patient barcode" readonly></td>
+                                                        <%}%> 
                                                     <td>
                                                         Epinephrine
                                                     </td>
@@ -641,9 +652,13 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>
-                                                        <input type ="text" id="med2" name="med2">
-                                                    </td>
+                                                    <% if (patientBarcode != null && patientBarcode.equals("S1234567J")) {
+                                                        %>
+                                                        <td><input type ="text" id="med2" name="med2" ></td>
+                                                        <% } else {
+                                                        %><td><input type ="text" id="med2" name="med2" style='color:red; font-size:x-small' value="Please scan a valid patient barcode" readonly></td>
+                                                        <%}%> 
+
                                                     <td>
                                                         Olanzapine
                                                     </td>
@@ -741,9 +756,29 @@
                                             <label for="right-label" class="right inline"><b>Multidisciplinary Note</b></label>
                                         </div>
                                         <div class="small-9 columns">
+                                            <%if(notesList == null){ 
+                                               %>
+                                               <input type ="text" id= "tutorialGrp" name="tutorialGrp" required>
+                                                 <%
+                                            } else {
+                                            %>
                                             <input type ="text" id= "tutorialGrp" name="tutorialGrp" value = "<%=tutorialGrp%>" required>
+                                            <% } %>
+                                            <%if(notesList == null){ 
+                                               %>
+                                               <input type ="text" id= "grpNames" name="grpNames" value = "" required>
+                                            <%
+                                            } else {
+                                            %>
                                             <input type ="text" id= "grpNames" name="grpNames" value = "<%=grpNames%>" required>
-                                            <textarea rows="4" cols="30" name="notes" required><%=notes%></textarea>
+                                            <% } %>
+                                            <textarea rows="4" cols="30" name="notes" required><%
+                                            if(notesList == null){ 
+                                                out.println(""); 
+                                            } else { 
+                                                out.println(notes);
+                                            }
+                                            %></textarea>
                                         </div>
                                     </div>
                                     <input type="Submit" name = "save" value="Save" class="tiny button"> 
@@ -754,7 +789,7 @@
                                         <h5>Previous Multidisciplinary Notes</h5>
                                         <p>Tutorial Group: TT01</p>
                                         <p>Group Members: Jolin, Jayne, Krystal, Rebecca</p>
-                                        <p>Time submitted: Tue Oct 07 01:07:52 SGT 2014</p>
+                                        <p>Time submitted: 2014/11/02 14:33:32</p>
                                         <p>The patient has been administered Epinephrine on a hourly basis. Patient's last vitals were normal. Nothing out of the norm was observed. </p>
                                     </div>
 
@@ -767,7 +802,7 @@
                                         <p>Tutorial Group: <%=tutorialGrp%></p>
                                         <p>Group Names: <%=grpNames%></p>
                                         <p>Time Submitted: <%DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                                                Date date = new Date();%> <%=date%> </p>
+                                                Date date = new Date();%> <%=dateFormat.format(date)%> </p>
                                         <p><%=notes%></p>
                                     </div>
                                     <%

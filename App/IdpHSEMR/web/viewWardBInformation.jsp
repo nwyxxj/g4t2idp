@@ -27,9 +27,9 @@
                             out.println("<tr>");
                         }
                         if (ward.equals("Bed 3")) {%>
-                        <td height = "200" width ="150" bgcolor = WhiteSmoke><a href="viewPatientInformation.jsp"><b><%=ward%><br></b>Occupied<br>Tan Mei Mei<br>NRIC: S1234567J<br></a><br></td>
+                        <td height = "200" width ="150" bgcolor = WhiteSmoke><a href="viewPatientInformation.jsp"><font size="3"><b><%=ward%><br></b>Occupied<br>Tan Mei Mei<br>NRIC: S1234567J<br></font></a><br></td>
                             <%} else {%>
-                <td height = "200" width ="150" bgcolor = "92d400"> <b><%=ward%><br></b>Available<br></td>
+                        <td height = "200" width ="150" bgcolor = "92d400"><font size="3"> <b><%=ward%><br></b>Available<br></font></td>
                     <%}%>
 
                 <%}
@@ -38,7 +38,9 @@
                 %>
             </tr></table>
 
-
+        <form>
+            <input type="button" value="Back to Ward Overview" class="button tiny" onClick="window.location = 'viewAllWardInformation.jsp'"/>
+        </form>
 
     </center>
 </body>

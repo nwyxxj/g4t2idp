@@ -28,11 +28,11 @@
 
                     for (String ward : wardList) {
                         if (ward.equals("Ward A")) {%>
-                <td height = "200" width ="150" bgcolor = WhiteSmoke> <b><a href="viewWardAInformation.jsp">Ward A</a></b><br></td>
+                        <td height = "200" width ="150" bgcolor = WhiteSmoke> <b><center><a href="viewWardAInformation.jsp"><font size="5">Ward A </font></a></center></b><br></td>
                     <%} else if (ward.equals("Ward B")) {%>
-                <td height = "200" width ="150" bgcolor = WhiteSmoke> <b><a href="viewWardBInformation.jsp">Ward B</a></b><br></td>
+                        <td height = "200" width ="150" bgcolor = WhiteSmoke> <b><center><a href="viewWardBInformation.jsp"><font size="5">Ward B</font></a></center></b><br></td>
                     <%} else {%>
-                <td height = "200" width ="150" bgcolor = WhiteSmoke> <b><a href="viewWardCInformation.jsp">Ward C</a></b><br></td>
+                        <td height = "200" width ="150" bgcolor = WhiteSmoke> <b><center><a href="viewWardCInformation.jsp"><font size="5">Ward C</font></a></center></b><br></td>
                     <%}%>
 
                 <%}

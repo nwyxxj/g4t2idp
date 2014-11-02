@@ -29,7 +29,7 @@
                         if (ward.equals("Bed 3")) {%>
                  <td height = "200" width ="150" bgcolor = "92d400"><b><%=ward%></b><br>Available<br></td>
                             <%} else {%>
-                <td height = "200" width ="150" bgcolor = "92d400"><b><%=ward%></b><br>Available<br></td>
+                 <td height = "200" width ="150" bgcolor = "92d400"><font size="3"><b><%=ward%></b><br>Available<br></font></td>
                     <%}%>
 
                 <%}
@@ -37,6 +37,9 @@
 
                 %>
             </tr></table>
+            <form>
+            <input type="button" value="Back to Ward Overview" class="button tiny" onClick="window.location = 'viewAllWardInformation.jsp'"/>
+            </form>
     </center>
 </body>
 </html>

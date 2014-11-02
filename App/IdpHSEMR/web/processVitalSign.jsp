@@ -4,6 +4,8 @@
     Author     : hpkhoo.2012
 --%>
 
+<%@page import="au.com.bytecode.opencsv.CSVWriter"%>
+<%@page import="java.io.FileWriter"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Date"%>
@@ -22,6 +24,11 @@
             boolean rrCheck = true;
             boolean hrCheck = true;
             boolean bpCheck= true;
+            CSVWriter writer = new CSVWriter(new FileWriter("yourfile.csv"), '\t');
+            // feed in your array (or convert your data to an array)
+            String[] entries = "first#second#third".split("#");
+            writer.writeNext(entries);
+            writer.close();
          
             //String checkThatItHasComeToThisPage = request.getParameter("check");
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

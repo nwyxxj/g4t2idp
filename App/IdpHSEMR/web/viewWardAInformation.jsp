@@ -18,8 +18,11 @@
     <center>
         <h1>Ward A</h1>
         <table style ="border-spacing:80px 10px"><tr>
-                <td height = "200" width ="150" bgcolor = "92d400"> <b>Bed 1</b><br>Available</td>
+                <td height = "200" width ="150" bgcolor = "92d400"> <font size="3"><b>Bed 1</b><br>Available</font></td>
             </tr></table>
+        <form>
+            <input type="button" value="Back to Ward Overview" class="button tiny" onClick="window.location = 'viewAllWardInformation.jsp'"/>
+        </form>
     </center>
 </body>
 </html>
