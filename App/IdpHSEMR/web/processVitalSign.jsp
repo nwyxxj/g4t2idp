@@ -4,9 +4,10 @@
     Author     : hpkhoo.2012
 --%>
 
+<%@page import="java.io.BufferedWriter"%>
+<%@page import="java.util.Scanner"%>
+<%@page import="java.io.File"%>
 <%@page import="java.awt.List"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.Collections.list(Enumeration)"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.io.FileOutputStream"%>
 <%@page import="java.io.PrintStream"%>
@@ -29,8 +30,8 @@
             boolean tempCheck = true;
             boolean rrCheck = true;
             boolean hrCheck = true;
-            boolean bpCheck= true;
-            
+            boolean bpCheck = true;
+
             //String checkThatItHasComeToThisPage = request.getParameter("check");
             DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
             String temp = request.getParameter("temperature");
@@ -40,7 +41,7 @@
             String SPO = request.getParameter("SPO");
             String intake = request.getParameter("intake");
             String output = request.getParameter("output");
-           
+
             //Validation for temperature
             if (temp.indexOf('.') != -1) {
                 int decimals = temp.length() - temp.indexOf('.') - 1;
@@ -71,16 +72,14 @@
             } catch (NumberFormatException e) {
                 hrCheck = false;
             }
-            
-             //Validation for BP 44/555
+
+            //Validation for BP 44/555
             if (BP.indexOf('/') != -1) {
                 int value = BP.length() - BP.indexOf("/") - 1;
                 if (BP.indexOf("/") >= 3) {
                     bpCheck = false;
                 }
             }
-
-            
 
             if (tempCheck) {
                 session.setAttribute("temp", temp);
@@ -90,77 +89,72 @@
                 session.setAttribute("rr", RR);
                 session.setAttribute("hr", HR);
                 session.setAttribute("bp", BP);
-                
-               
+
             }
 
             if (rrCheck) {
                 session.setAttribute("rr", RR);
             } else {
-               session.setAttribute("rrError", "Respiratory Rate- Please enter a valid RR.");
-               session.setAttribute("temp", temp);
+                session.setAttribute("rrError", "Respiratory Rate- Please enter a valid RR.");
+                session.setAttribute("temp", temp);
                 session.setAttribute("rr", RR);
                 session.setAttribute("hr", HR);
                 session.setAttribute("bp", BP);
-                
+
             }
 
             if (hrCheck) {
                 session.setAttribute("hr", HR);
             } else {
-                 session.setAttribute("hrError", "Heart Rate- Please enter a valid HR.");
-                 session.setAttribute("temp", temp);
+                session.setAttribute("hrError", "Heart Rate- Please enter a valid HR.");
+                session.setAttribute("temp", temp);
                 session.setAttribute("rr", RR);
                 session.setAttribute("hr", HR);
                 session.setAttribute("bp", BP);
-                
+
             }
-            
-            if(bpCheck) {
+
+            if (bpCheck) {
                 session.setAttribute("bp", BP);
-            }else {
+            } else {
                 session.setAttribute("bpError", "Blood Pressure- Please enter a valid BP");
                 session.setAttribute("temp", temp);
                 session.setAttribute("rr", RR);
                 session.setAttribute("hr", HR);
                 session.setAttribute("bp", BP);
-                
+
             }
-           
-            
+
             session.setAttribute("spo", SPO);
             session.setAttribute("intake", intake);
             session.setAttribute("output", output);
             session.setAttribute("flag", "true");
             session.setAttribute("first", "false");
-            
-            if(bpCheck && hrCheck && rrCheck && tempCheck){
+
+            if (bpCheck && hrCheck && rrCheck && tempCheck) {
                 session.setAttribute("dateTime", dateFormat.format(new Date()));
-                CSVWriter writer = new CSVWriter(new FileWriter("temp.csv"), ',');
-           // feed in your array (or convert your data to an array)
+
                 String date = dateFormat.format(new Date());
-                String line = date + "#40#" + temp + "#35#\n";
-                String[] entries = line.split("#");
-                writer.writeNext(entries);
-                writer.close();
-//         
-//                try {
-//                    PrintStream writer = new PrintStream(
-//                        new FileOutputStream("temp.csv", true));
-//                    writer.println(date +",40," + temp + ",35\n");
-//                    writer.close();
-//                  } catch (IOException e) {
-//                    e.printStackTrace();
+                
+                try {
+                    PrintStream writer = new PrintStream(
+                    new FileOutputStream("C:/Users/Administrator/Documents/GitHub/g4t2idp/App/IdpHSEMR/web/temperature.txt", true));
+                    //new FileOutputStream(".\reports\temperature.txt", true));
+                    writer.print(date +",40," + temp + ",35\n");
+                    writer.close();
+                  } catch (IOException e) {
+                    e.printStackTrace();
                   }
-             
+            }
+
             session.setAttribute("active", "vital");
-            
+
 //            RequestDispatcher rd = request.getRequestDispatcher("/viewPatientInformation.jsp");
 //            rd.forward(request, response); 
             response.sendRedirect("viewPatientInformation.jsp");
 //            RequestDispatcher dispatch = getServletContext().getRequestDispatcher("/viewPatientInformation.jsp");
 //            dispatch.forward(request, response);
-        %> 
+%> 
 
     </body>
 </html>

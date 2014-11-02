@@ -37,6 +37,7 @@
     </head>
 
     <body>
+       
         <script src="js/foundation.min.js"></script>
         <br>
         <%            String active = active = (String) session.getAttribute("active");
@@ -98,7 +99,7 @@
                     String successMsg = (String) session.getAttribute("successMsg");
                     String errorMsg = errorMsg = (String) session.getAttribute("errorMsg");
                     if (errorMsg == null && successMsg != null) {
-                         session.removeAttribute("patientBarcode");
+                        session.removeAttribute("patientBarcode");
                 %>
                 <div data-alert class="alert-box success radius">
                     Patient administered successfully!
@@ -440,9 +441,9 @@
                                                                 out.println("");
                                                             }%>" required />
                                                     </div>
-                                                   
-                                                        <label for="right-label" class="left inline">mm/Hg</label>
-                                                    
+
+                                                    <label for="right-label" class="left inline">mm/Hg</label>
+
                                                 </div> </td></tr>
                                         <tr><td><b>SPO</b></td>
                                             <td><%=spo%> with O<sub>2</sub></td>
@@ -615,9 +616,9 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                        <% if (patientBarcode != null && patientBarcode.equals("S1234567J")) {
-                                                        %>
-                                                        <td><input type ="text" id="med1" name="med1" ></td>
+                                                    <% if (patientBarcode != null && patientBarcode.equals("S1234567J")) {
+                                                    %>
+                                                    <td><input type ="text" id="med1" name="med1" ></td>
                                                         <% } else {
                                                         %><td><input type ="text" id="med1" name="med1" style='color:red; font-size:x-small' value="Please scan a valid patient barcode" readonly></td>
                                                         <%}%> 
@@ -646,15 +647,15 @@
                                                             lastDate = (String) session.getAttribute("lastDate");
                                                             if (lastDate == null) {
                                                                 out.println("2014/10/12 10:35:21");
-                                                                } else {
-                                                                    out.println(lastDate);
-                                                                }%>                               
+                                                            } else {
+                                                                out.println(lastDate);
+                                                            }%>                               
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <% if (patientBarcode != null && patientBarcode.equals("S1234567J")) {
-                                                        %>
-                                                        <td><input type ="text" id="med2" name="med2" ></td>
+                                                    %>
+                                                    <td><input type ="text" id="med2" name="med2" ></td>
                                                         <% } else {
                                                         %><td><input type ="text" id="med2" name="med2" style='color:red; font-size:x-small' value="Please scan a valid patient barcode" readonly></td>
                                                         <%}%> 
@@ -682,9 +683,9 @@
                                                         <%
                                                             if (lastDate == null) {
                                                                 out.println("2014/10/12 10:35:21");
-                                                                 } else {
-                                                                     out.println(lastDate);
-                                                                 }%>                                             
+                                                            } else {
+                                                                out.println(lastDate);
+                                                            }%>                                             
                                                     </td>
                                                 </tr>
                                             </table>
@@ -756,29 +757,29 @@
                                             <label for="right-label" class="right inline"><b>Multidisciplinary Note</b></label>
                                         </div>
                                         <div class="small-9 columns">
-                                            <%if(notesList == null){ 
-                                               %>
-                                               <input type ="text" id= "tutorialGrp" name="tutorialGrp" required>
-                                                 <%
+                                            <%if (notesList == null) {
+                                            %>
+                                            <input type ="text" id= "tutorialGrp" name="tutorialGrp" required>
+                                            <%
                                             } else {
                                             %>
                                             <input type ="text" id= "tutorialGrp" name="tutorialGrp" value = "<%=tutorialGrp%>" required>
                                             <% } %>
-                                            <%if(notesList == null){ 
-                                               %>
-                                               <input type ="text" id= "grpNames" name="grpNames" value = "" required>
+                                            <%if (notesList == null) {
+                                            %>
+                                            <input type ="text" id= "grpNames" name="grpNames" value = "" required>
                                             <%
                                             } else {
                                             %>
                                             <input type ="text" id= "grpNames" name="grpNames" value = "<%=grpNames%>" required>
                                             <% } %>
                                             <textarea rows="4" cols="30" name="notes" required><%
-                                            if(notesList == null){ 
-                                                out.println(""); 
-                                            } else { 
-                                                out.println(notes);
-                                            }
-                                            %></textarea>
+                                                if (notesList == null) {
+                                                    out.println("");
+                                                } else {
+                                                    out.println(notes);
+                                                }
+                                                %></textarea>
                                         </div>
                                     </div>
                                     <input type="Submit" name = "save" value="Save" class="tiny button"> 
@@ -794,15 +795,14 @@
                                     </div>
 
                                     <%
-
                                         if (submittedNotes
                                                 != null) {%>
                                     <div class="panel">
                                         <h5>Previous Multidisciplinary Notes</h5>
                                         <p>Tutorial Group: <%=tutorialGrp%></p>
                                         <p>Group Names: <%=grpNames%></p>
-                                        <p>Time Submitted: <%DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                                                Date date = new Date();%> <%=dateFormat.format(date)%> </p>
+                                            <p>Time Submitted: <%DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                                            Date date = new Date();%> <%=dateFormat.format(date)%> </p>
                                         <p><%=notes%></p>
                                     </div>
                                     <%
