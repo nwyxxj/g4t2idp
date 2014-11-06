@@ -279,11 +279,7 @@
                         } %>" id="vital">
                         <div class="row">
 
-                            <%
-                                String a = (getServletContext().getRealPath("") + File.separator + "temperature.txt").replace("build\\", "");
-
-                                out.println(a.replace("\\", "/"));
-                            %>
+                            
                             <div class="large-centered medium-10 columns">
                                 <form data-abide action="processVitalSign.jsp">
                                     <table border = "0">   
@@ -408,7 +404,7 @@
                                         %>
 
 
-                                        <tr><td><b>Temperature</b> <span class="label"><a href="#" data-reveal-id="chart"  style="color:white"> View Chart</a></span></td>
+                                        <tr><td><b>Temperature</b> <span class="label"><a href="#" data-reveal-id="chart" style="color:white"> View Chart</a></span></td>
                                             <td><%=temp%> ºC</td>
                                             <td>
                                                 <div class="row">
@@ -759,6 +755,7 @@
                                     %>
                                     <div class="row">
                                         <div class="small-3 columns">
+                                            
                                             <label for="right-label" class="right inline"><b>Tutorial Group</b></label>
                                             <label for="right-label" class="right inline"><b>Group Member Names</b></label>
                                             <label for="right-label" class="right inline"><b>Multidisciplinary Note</b></label>
@@ -772,6 +769,7 @@
                                             %>
                                             <input type ="text" id= "tutorialGrp" name="tutorialGrp" value = "<%=tutorialGrp%>" required>
                                             <% } %>
+                                            
                                             <%if (notesList == null) {
                                             %>
                                             <input type ="text" id= "grpNames" name="grpNames" value = "" required>
@@ -801,22 +799,23 @@
                                                 <p>The patient has been administered Epinephrine on a hourly basis. Patient's last vitals were normal. Nothing out of the norm was observed. </p>
                                             </div>
                                         </dd>
+                                         <%if (submittedNotes != null) {%>
                                         <dd class="accordion-navigation">
                                             <a href="#panel2">Group 2's Notes</a>
                                             <div id="panel2" class="content">
-                                                <% 
-                                                    if (submittedNotes != null) {%>
-                                                    <p>Tutorial Group: TT01</p>
-                                                <p>Group Members: Jolin, Jayne, Krystal, Rebecca</p>
-                                                <p>Time submitted: 2014/11/02 14:33:32</p>
-                                                <p>The patient has been administered Epinephrine on a hourly basis. Patient's last vitals were normal. Nothing out of the norm was observed. </p>
+                                                  <p>Tutorial Group: <%=tutorialGrp%></p>
+                                                <p>Group Members: <%=grpNames%></p>
+                                                <p>Time submitted: <%DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                                            Date date = new Date();%> <%=dateFormat.format(date)%> </p>
+                                                <p><%=notes%> </p>
                                                 <%}else{%>
-                                                    This group has not submitted any notes.
+                                                   
                                                 <%}%>
                                                     
                                             </div>
                                         </dd>
                                     </dl>
+                                                <br>
                                     <input type="Submit" name = "save" value="Save" class="tiny button"> 
                                     <input type="Submit" name = "submit" value="Submit" class="tiny button"> 
 
@@ -833,7 +832,7 @@
         </div>
 
         <div id="chart" class="reveal-modal medium" data-reveal>
-
+            
             <iframe src = "tempChart.jsp" frameborder ="0" width = "1000" height = "350"></iframe> 
             <a class="close-reveal-modal">&#215;</a>
 

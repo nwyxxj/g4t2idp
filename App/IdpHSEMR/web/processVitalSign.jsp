@@ -142,13 +142,15 @@
                     PrintStream writer = new PrintStream(
                     new FileOutputStream(fileLocation.replace("\\", "/"), true));
                     //new FileOutputStream(".\reports\temperature.txt", true));
-                    writer.print(date +",40," + temp + ",35\n");
+                    writer.print("\n");
+                    writer.print(date +",40," + temp + ",35");
+                    
                     writer.close();
                   } catch (IOException e) {
                     e.printStackTrace();
                   }
             }
-
+            
             session.setAttribute("active", "vital");
 
 //            RequestDispatcher rd = request.getRequestDispatcher("/viewPatientInformation.jsp");
