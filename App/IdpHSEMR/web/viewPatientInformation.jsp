@@ -38,7 +38,7 @@
     </head>
 
     <body>
-       
+
         <script src="js/foundation.min.js"></script>
         <br>
         <%            String active = active = (String) session.getAttribute("active");
@@ -278,12 +278,11 @@
                             out.println("content");
                         } %>" id="vital">
                         <div class="row">
-                            
-                            <% 
-                    String a = (getServletContext().getRealPath("") + File.separator + "temperature.txt").replace("build\\", "");
-                    
-                           
-                     out.println(a.replace("\\", "/"));
+
+                            <%
+                                String a = (getServletContext().getRealPath("") + File.separator + "temperature.txt").replace("build\\", "");
+
+                                out.println(a.replace("\\", "/"));
                             %>
                             <div class="large-centered medium-10 columns">
                                 <form data-abide action="processVitalSign.jsp">
@@ -790,34 +789,37 @@
                                                 %></textarea>
                                         </div>
                                     </div>
+
+
+                                    <dl class="accordion" data-accordion>
+                                        <dd class="accordion-navigation">
+                                            <a href="#panel1">Group 1's Notes</a>
+                                            <div id="panel1" class="content">
+                                                <p>Tutorial Group: TT01</p>
+                                                <p>Group Members: Jolin, Jayne, Krystal, Rebecca</p>
+                                                <p>Time submitted: 2014/11/02 14:33:32</p>
+                                                <p>The patient has been administered Epinephrine on a hourly basis. Patient's last vitals were normal. Nothing out of the norm was observed. </p>
+                                            </div>
+                                        </dd>
+                                        <dd class="accordion-navigation">
+                                            <a href="#panel2">Group 2's Notes</a>
+                                            <div id="panel2" class="content">
+                                                <% 
+                                                    if (submittedNotes != null) {%>
+                                                    <p>Tutorial Group: TT01</p>
+                                                <p>Group Members: Jolin, Jayne, Krystal, Rebecca</p>
+                                                <p>Time submitted: 2014/11/02 14:33:32</p>
+                                                <p>The patient has been administered Epinephrine on a hourly basis. Patient's last vitals were normal. Nothing out of the norm was observed. </p>
+                                                <%}else{%>
+                                                    This group has not submitted any notes.
+                                                <%}%>
+                                                    
+                                            </div>
+                                        </dd>
+                                    </dl>
                                     <input type="Submit" name = "save" value="Save" class="tiny button"> 
                                     <input type="Submit" name = "submit" value="Submit" class="tiny button"> 
 
-
-                                    <div class="panel">
-                                        <h5>Previous Multidisciplinary Notes</h5>
-                                        <p>Tutorial Group: TT01</p>
-                                        <p>Group Members: Jolin, Jayne, Krystal, Rebecca</p>
-                                        <p>Time submitted: 2014/11/02 14:33:32</p>
-                                        <p>The patient has been administered Epinephrine on a hourly basis. Patient's last vitals were normal. Nothing out of the norm was observed. </p>
-                                    </div>
-
-                                    <%
-                                        if (submittedNotes
-                                                != null) {%>
-                                    <div class="panel">
-                                        <h5>Previous Multidisciplinary Notes</h5>
-                                        <p>Tutorial Group: <%=tutorialGrp%></p>
-                                        <p>Group Names: <%=grpNames%></p>
-                                            <p>Time Submitted: <%DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                                            Date date = new Date();%> <%=dateFormat.format(date)%> </p>
-                                        <p><%=notes%></p>
-                                    </div>
-                                    <%
-                                            session.removeAttribute("submittedNotes");
-                                            session.removeAttribute("active");
-                                        }
-                                    %>
 
                                 </div>
                             </div>
