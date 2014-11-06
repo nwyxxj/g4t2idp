@@ -2920,6 +2920,7 @@ blockquote p {
     margin-bottom: 0 !important;
     list-style: none;
     float: left; 
+    width: 20%;
     border: #cccccc solid 1px;
     border-bottom: none;}
     .tabs dd > a, .tabs .tab-title > a {

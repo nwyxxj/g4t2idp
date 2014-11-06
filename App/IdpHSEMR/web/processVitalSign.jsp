@@ -137,8 +137,10 @@
                 String date = dateFormat.format(new Date());
                 
                 try {
+                    String fileLocation = (getServletContext().getRealPath("") + File.separator + "temperature.txt").replace("build\\", ""); 
+                    
                     PrintStream writer = new PrintStream(
-                    new FileOutputStream("C:/Users/Administrator/Documents/GitHub/g4t2idp/App/IdpHSEMR/web/temperature.txt", true));
+                    new FileOutputStream(fileLocation.replace("\\", "/"), true));
                     //new FileOutputStream(".\reports\temperature.txt", true));
                     writer.print(date +",40," + temp + ",35\n");
                     writer.close();

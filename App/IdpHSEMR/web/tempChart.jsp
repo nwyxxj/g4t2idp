@@ -13,10 +13,14 @@
     </head>
     <body>
          <div id="graphdiv"></div>
+ 
             <script type="text/javascript">
+                
                g = new Dygraph(
                 document.getElementById("graphdiv"), "temperature.txt",
-              {
+ 
+    
+            {
                 labels: [ "X", "High","Patient", "Low" ],
                 title: 'Temperature Chart',
                 titleHeight: 32,
@@ -25,7 +29,9 @@
               }
 
               );
+            g.updateOptions({file: newData})
              </script>  
-        
+         
+}       
     </body>
 </html>

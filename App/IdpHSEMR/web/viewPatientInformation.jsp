@@ -4,6 +4,7 @@
     Author     : hpkhoo.2012
 --%>
 
+<%@page import="java.io.File"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashMap"%>
@@ -277,6 +278,13 @@
                             out.println("content");
                         } %>" id="vital">
                         <div class="row">
+                            
+                            <% 
+                    String a = (getServletContext().getRealPath("") + File.separator + "temperature.txt").replace("build\\", "");
+                    
+                           
+                     out.println(a.replace("\\", "/"));
+                            %>
                             <div class="large-centered medium-10 columns">
                                 <form data-abide action="processVitalSign.jsp">
                                     <table border = "0">   
